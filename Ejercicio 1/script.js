@@ -1,0 +1,1 @@
+let p1 = prompt("¿Cuantos computadores hay en la sala");
