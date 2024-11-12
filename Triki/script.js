@@ -21,12 +21,27 @@ function saveFigure() {
     } else {
         alert("La figura insertada no es X o O intente con una de estas figuras");
     }
+    trikiHorizontal();
+}
+
+function trikiHorizontal() {
+    let count = 0;
+    for (let i = 0; i < Triki.length; i++) {
+        for (let j = 0; j < Triki.length - i - 1; j++) {
+            if (Triki[i][j] === Triki[i][j + 1] && Triki[i][j] !== null && Triki[i][j + 1] !== null) {
+                count++;
+            }
+        }
+    }
+    if (count === 2) {
+        document.getElementById("message").textContent = "HAY UN GANADOR";
+    }
 }
 
 function trikiTie() {
     for (let i = 0; i < Triki.length; i++) {
         for (let j = 0; j < Triki.length - i - 1; j++) {
-            
+
         }
     }
 }
