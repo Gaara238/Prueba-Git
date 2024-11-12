@@ -22,3 +22,11 @@ function saveFigure() {
         alert("La figura insertada no es X o O intente con una de estas figuras");
     }
 }
+
+function trikiTie() {
+    for (let i = 0; i < Triki.length; i++) {
+        for (let j = 0; j < Triki.length - i - 1; j++) {
+            
+        }
+    }
+}
