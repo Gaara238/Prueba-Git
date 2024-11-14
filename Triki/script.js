@@ -21,7 +21,10 @@ function saveFigure() {
     } else {
         alert("La figura insertada no es X o O intente con una de estas figuras");
     }
+    console.log(Triki);
+    
     trikiHorizontal();
+    trikiVertical();
 }
 
 function trikiHorizontal() {
@@ -35,6 +38,23 @@ function trikiHorizontal() {
     }
     if (count === 2) {
         document.getElementById("message").textContent = "HAY UN GANADOR";
+    }
+}
+
+function trikiVertical() {
+    let count = 0;
+    for (let i = 0; i < Triki.length; i++) {
+        for (let j = 0; j < Triki.length - i - 1; j++) {
+            if (Triki[j][i] === Triki[j + 1][i] && Triki[j][i] !== null && Triki[j + 1][i] !== null) {
+                count++;
+                console.log(Triki);
+                if (count === 2) {
+                    document.getElementById("message").textContent = "HAY UN GANADOR";
+                    break;
+                }
+                
+            }
+        }
     }
 }
 
