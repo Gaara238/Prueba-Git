@@ -31,6 +31,16 @@ function saveFigure() {
     trikiDiagonal();
 }
 
+function buttonUpdate() {
+    Triki = [
+        [null, null, null],
+        [null, null, null],
+        [null, null, null]
+    ];
+    console.log(Triki);
+    
+}
+
 function trikiHorizontal() {
     let count = 0;
     for (let i = 0; i < Triki.length; i++) {
