@@ -11,7 +11,11 @@ function saveFigure() {
     if (figure === "X" || figure === "O" || figure === "o" || figure === "x") {
         if (x >= 0 && x <= 2) {
             if (y >= 0 && y <= 2) {
-                Triki[x][y] = figure;
+                if (Triki[x][y] === null) {
+                    Triki[x][y] = figure;
+                } else {
+                    alert("Ya hay una figura en esta posición, intenta con otra");
+                } 
             } else {
                 alert("Los numeros insertados no coinciden con ninguna posicion de la tabla del triki, intente poner unos que si coincidan");
             }
