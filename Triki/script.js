@@ -22,12 +22,16 @@ function saveFigure() {
     let figure = document.getElementById("figure").value;
     let x = document.getElementById("x").value;
     let y = document.getElementById("y").value;
-    dontRepiteFigure(figure);
-    
     if (figure === "X" || figure === "O" || figure === "o" || figure === "x") {
         if (x >= 0 && x <= 2) {
             if (y >= 0 && y <= 2) {
-                Triki[x][y] = figure;
+                if (figure !== figureValue) {
+                    Triki[x][y] = figure;
+                    figureValue = figure;
+                } else {
+                    dontRepeateFigure(figure);
+                }
+
             } else {
                 alert("Los numeros insertados no coinciden con ninguna posicion de la tabla del triki, intente poner unos que si coincidan");
             }
@@ -41,7 +45,6 @@ function saveFigure() {
     trikiHorizontal();
     trikiVertical();
     trikiDiagonal();
-    figureValue = figure;
 }
 
 function trikiHorizontal() {
