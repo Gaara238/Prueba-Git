@@ -4,10 +4,26 @@ let Triki = [
     [null, null, null]
 ];
 
+let figureValue = null;
+
+function dontRepeateFigure(figure) {
+    if (figureValue === figure) {
+        if (figure === "X" || figure === "x") {
+            let f1 = "O";
+            alert("Es el turno de la figura " + f1);
+        } else if (figure === "O" || figure === "o") {
+            f1 = "X";
+            alert("Es el turno de la figura " + f1);
+        }
+    }
+}
+
 function saveFigure() {
     let figure = document.getElementById("figure").value;
     let x = document.getElementById("x").value;
     let y = document.getElementById("y").value;
+    dontRepiteFigure(figure);
+    
     if (figure === "X" || figure === "O" || figure === "o" || figure === "x") {
         if (x >= 0 && x <= 2) {
             if (y >= 0 && y <= 2) {
@@ -25,6 +41,7 @@ function saveFigure() {
     trikiHorizontal();
     trikiVertical();
     trikiDiagonal();
+    figureValue = figure;
 }
 
 function trikiHorizontal() {
@@ -52,7 +69,7 @@ function trikiVertical() {
                     document.getElementById("message").textContent = "HAY UN GANADOR";
                     break;
                 }
-                
+
             }
         }
     }
