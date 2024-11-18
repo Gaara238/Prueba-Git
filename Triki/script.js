@@ -32,6 +32,10 @@ function saveFigure() {
 }
 
 function buttonUpdate() {
+    document.getElementById("figure").value = "";
+    document.getElementById("x").value = "";
+    document.getElementById("y").value = "";
+    document.getElementById("message").textContent = "";
     Triki = [
         [null, null, null],
         [null, null, null],
