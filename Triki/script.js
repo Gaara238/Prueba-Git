@@ -4,6 +4,20 @@ let Triki = [
     [null, null, null]
 ];
 
+let figureValue = null;
+
+function dontRepeateFigure(figure) {
+    if (figureValue === figure) {
+        if (figure === "X" || figure === "x") {
+            let f1 = "O";
+            alert("Es el turno de la figura " + f1);
+        } else if (figure === "O" || figure === "o") {
+            f1 = "X";
+            alert("Es el turno de la figura " + f1);
+        }
+    }
+}
+
 function saveFigure() {
     let figure = document.getElementById("figure").value;
     let x = document.getElementById("x").value;
@@ -12,10 +26,15 @@ function saveFigure() {
         if (x >= 0 && x <= 2) {
             if (y >= 0 && y <= 2) {
                 if (Triki[x][y] === null) {
-                    Triki[x][y] = figure;
+                    if (figure !== figureValue) {
+                        Triki[x][y] = figure;
+                        figureValue = figure;
+                    } else {
+                        dontRepeateFigure(figure);
+                    }
                 } else {
                     alert("Ya hay una figura en esta posición, intenta con otra");
-                } 
+                }
             } else {
                 alert("Los numeros insertados no coinciden con ninguna posicion de la tabla del triki, intente poner unos que si coincidan");
             }
@@ -42,7 +61,7 @@ function buttonUpdate() {
         [null, null, null]
     ];
     console.log(Triki);
-    
+
 }
 
 function trikiHorizontal() {
@@ -70,7 +89,7 @@ function trikiVertical() {
                     document.getElementById("message").textContent = "HAY UN GANADOR";
                     break;
                 }
-                
+
             }
         }
     }
