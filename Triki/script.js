@@ -4,7 +4,10 @@ let Triki = [
     [null, null, null]
 ];
 
+Triki = JSON.parse(localStorage.getItem("Triki"));
+
 let figureValue = null;
+figureValue = localStorage.getItem("figureValue");
 
 function dontRepeateFigure(figure) {
     if (figureValue === figure) {
@@ -29,6 +32,7 @@ function saveFigure() {
                     if (figure !== figureValue) {
                         Triki[x][y] = figure;
                         figureValue = figure;
+                        localStorage.setItem("figureValue", figureValue);
                     } else {
                         dontRepeateFigure(figure);
                     }
@@ -48,6 +52,7 @@ function saveFigure() {
     trikiHorizontal();
     trikiVertical();
     trikiDiagonal();
+    localStorage.setItem("Triki", JSON.stringify(Triki));
 }
 
 function buttonUpdate() {
@@ -61,7 +66,9 @@ function buttonUpdate() {
         [null, null, null]
     ];
     console.log(Triki);
-
+    localStorage.setItem("Triki", JSON.stringify(Triki));
+    figureValue = null;
+    localStorage.setItem("figureValue", figureValue);
 }
 
 function trikiHorizontal() {
