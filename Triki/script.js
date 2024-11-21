@@ -52,6 +52,7 @@ function saveFigure() {
     trikiHorizontal();
     trikiVertical();
     trikiDiagonal();
+    trikiTie();
     localStorage.setItem("Triki", JSON.stringify(Triki));
 }
 
@@ -112,9 +113,15 @@ function trikiDiagonal() {
 }
 
 function trikiTie() {
+    let count = 0;
     for (let i = 0; i < Triki.length; i++) {
-        for (let j = 0; j < Triki.length - i - 1; j++) {
-
+        for (let j = 0; j < Triki.length; j++) {
+            if (Triki[i][j] !== null) {
+                count++;
+            }
+            if (count === 9) {
+                document.getElementById("message").textContent = "ESTA PARTIDA A TERMINADO EN UN EMPATE";
+            }
         }
     }
 }
