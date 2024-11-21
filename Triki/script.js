@@ -72,43 +72,42 @@ function buttonUpdate() {
 }
 
 function trikiHorizontal() {
-    let count = 0;
     for (let i = 0; i < Triki.length; i++) {
+        let count = 0;
         for (let j = 0; j < Triki.length - i - 1; j++) {
             if (Triki[i][j] === Triki[i][j + 1] && Triki[i][j] !== null && Triki[i][j + 1] !== null) {
                 count++;
             }
         }
-    }
-    if (count === 2) {
-        document.getElementById("message").textContent = "HAY UN GANADOR";
+        if (count === 2) {
+            document.getElementById("message").textContent = "EL JUGADOR " + figureValue + " A GANADO";
+            break;
+        }
     }
 }
 
 function trikiVertical() {
-    let count = 0;
     for (let i = 0; i < Triki.length; i++) {
+        let count = 0;
         for (let j = 0; j < Triki.length - i - 1; j++) {
             if (Triki[j][i] === Triki[j + 1][i] && Triki[j][i] !== null && Triki[j + 1][i] !== null) {
                 count++;
-                console.log(Triki);
-                if (count === 2) {
-                    document.getElementById("message").textContent = "HAY UN GANADOR";
-                    break;
-                }
-
             }
+        }
+        if (count === 2) {
+            document.getElementById("message").textContent = "EL JUGADOR " + figureValue + " A GANADO";
+            break;
         }
     }
 }
 
 function trikiDiagonal() {
     if (Triki[0][0] === Triki[1][1] && Triki[1][1] === Triki[2][2] && Triki[0][0] !== null && Triki[1][1] !== null && Triki[2][2] !== null) {
-        document.getElementById("message").textContent = "HAY UN GANADOR";
+        document.getElementById("message").textContent = "EL JUGADOR  " + figureValue + "  A GANADO";
     }
 
     if (Triki[2][0] === Triki[2][0] && Triki[1][1] === Triki[0][2] && Triki[2][0] !== null && Triki[1][1] !== null && Triki[0][2] !== null) {
-        document.getElementById("message").textContent = "HAY UN GANADOR";
+        document.getElementById("message").textContent = "EL JUGADOR  " + figureValue + "  A GANADO";
     }
 }
 
