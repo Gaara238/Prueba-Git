@@ -31,7 +31,7 @@ function saveFigure() {
                 if (Triki[x][y] === null) {
                     if (figure !== figureValue) {
                         Triki[x][y] = figure;
-                        loadTable();
+                        loadTable(x, y, figure);
                         figureValue = figure;
                         localStorage.setItem("figureValue", figureValue);
                     } else {
@@ -127,12 +127,7 @@ function trikiTie() {
     }
 }
 
-function loadTable() {
+function loadTable(x, y, figure) {
     let table = document.getElementById("table");
-    for (let i = 0; i < table.rows.length; i++) {
-        for (let j = 0; j < table.rows[i].cells.length; j++) {
-            table.rows[i].cells[j].textContent = Triki[i][j];
-        }
-    }
-
+    table.rows[x].cells[y].textContent = figure;
 }
