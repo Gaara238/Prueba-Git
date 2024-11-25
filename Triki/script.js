@@ -46,7 +46,7 @@ function saveFigure() {
                 if (Triki[x][y] === null) {
                     if (figure !== figureValue) {
                         Triki[x][y] = figure;
-                        loadTable(x, y, figure);
+                        loadTable();
                         figureValue = figure;
                         localStorage.setItem("figureValue", figureValue);
                     } else {
@@ -178,9 +178,13 @@ function trikiTie() {
     }
 }
 
-function loadTable(x, y, figure) {
+function loadTable() {
     let table = document.getElementById("table");
-    table.rows[x].cells[y].textContent = figure;
+    for (let i = 0; i < table.rows.length; i++) {
+        for (let j = 0; j < table.rows[i].cells.length; j++) {
+            table.rows[i].cells[j].textContent = Triki[i][j];
+        }
+    }
 }
 
 function outlineGreenPosition() {
