@@ -47,6 +47,9 @@ function saveFigure() {
                     if (figure !== figureValue) {
                         Triki[x][y] = figure;
                         loadTable();
+                        document.getElementById("figure").value = "";
+                        document.getElementById("x").value = "";
+                        document.getElementById("y").value = "";
                         figureValue = figure;
                         localStorage.setItem("figureValue", figureValue);
                     } else {
@@ -86,6 +89,11 @@ function buttonUpdate() {
     localStorage.setItem("Triki", JSON.stringify(Triki));
     figureValue = null;
     localStorage.setItem("figureValue", figureValue);
+    loadTable();
+    document.getElementById("figure").disabled = false;
+    document.getElementById("x").disabled = false;
+    document.getElementById("y").disabled = false;
+    
 }
 
 function trikiHorizontal() {
@@ -109,6 +117,9 @@ function trikiHorizontal() {
         if (count === 2) {
             document.getElementById("message").textContent = "EL JUGADOR " + figureValue + " A GANADO";
             outlineGreenPosition();
+            document.getElementById("figure").disabled = true;
+            document.getElementById("x").disabled = true;
+            document.getElementById("y").disabled = true;
             break;
         }
     }
@@ -135,6 +146,9 @@ function trikiVertical() {
         if (count === 2) {
             document.getElementById("message").textContent = "EL JUGADOR " + figureValue + " A GANADO";
             outlineGreenPosition();
+            document.getElementById("figure").disabled = true;
+            document.getElementById("x").disabled = true;
+            document.getElementById("y").disabled = true;
             break;
         }
     }
@@ -150,6 +164,9 @@ function trikiDiagonal() {
         p3.j = 2;
         document.getElementById("message").textContent = "EL JUGADOR  " + figureValue + "  A GANADO";
         outlineGreenPosition();
+        document.getElementById("figure").disabled = true;
+        document.getElementById("x").disabled = true;
+        document.getElementById("y").disabled = true;
     }
 
     if (Triki[2][0] === Triki[1][1] && Triki[1][1] === Triki[0][2] && Triki[2][0] !== null && Triki[1][1] !== null && Triki[0][2] !== null) {
@@ -161,6 +178,9 @@ function trikiDiagonal() {
         p3.j = 2;
         document.getElementById("message").textContent = "EL JUGADOR  " + figureValue + "  A GANADO";
         outlineGreenPosition();
+        document.getElementById("figure").disabled = true;
+        document.getElementById("x").disabled = true;
+        document.getElementById("y").disabled = true;
     }
 }
 
@@ -183,6 +203,7 @@ function loadTable() {
     for (let i = 0; i < table.rows.length; i++) {
         for (let j = 0; j < table.rows[i].cells.length; j++) {
             table.rows[i].cells[j].textContent = Triki[i][j];
+            table.rows[i].cells[j].className = "";
         }
     }
 }
@@ -193,3 +214,7 @@ function outlineGreenPosition() {
     table.rows[p2.i].cells[p2.j].classList.add("outlineGreen");
     table.rows[p3.i].cells[p3.j].classList.add("outlineGreen");
 }
+
+window.addEventListener("load", function() {
+    loadTable();
+});
