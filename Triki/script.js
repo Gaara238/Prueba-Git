@@ -200,11 +200,17 @@ function trikiTie() {
 
 function loadTable() {
     let table = document.getElementById("table");
-    for (let i = 0; i < table.rows.length; i++) {
-        for (let j = 0; j < table.rows[i].cells.length; j++) {
-            table.rows[i].cells[j].textContent = Triki[i][j];
-            table.rows[i].cells[j].className = "";
+    while (table.rows.length) {
+        table.deleteRow(0);
+    }
+    for (let i = 0; i < Triki.length; i++) {
+        let tr = document.createElement("tr");
+        for (let j = 0; j < Triki.length; j++) {
+            let td = document.createElement("td");
+            td.textContent = Triki[i][j];
+            tr.appendChild(td);
         }
+        table.appendChild(tr);
     }
 }
 
