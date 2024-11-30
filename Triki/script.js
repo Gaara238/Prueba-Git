@@ -118,7 +118,7 @@ function trikiHorizontal() {
 function trikiVertical() {
     for (let i = 0; i < Triki.length; i++) {
         let count = 0;
-        for (let j = 0; j < Triki.length - i - 1; j++) {
+        for (let j = 0; j < Triki.length - 1; j++) {
             if (Triki[j][i] === Triki[j + 1][i] && Triki[j][i] !== null && Triki[j + 1][i] !== null) {
                 count++;
                 if (count === 1) {
@@ -128,8 +128,8 @@ function trikiVertical() {
                 if (count === 2) {
                     p2.i = j;
                     p2.j = i;
-                    p3.i = j;
-                    p3.j = i + 1;
+                    p3.i = j + 1;
+                    p3.j = i;
                 }
             }
         }
@@ -215,4 +215,8 @@ function clickCell(e) {
 
 window.addEventListener("load", function() {
     loadTable();
+    trikiVertical();
+    trikiHorizontal();
+    trikiDiagonal();
+    trikiTie();
 });
