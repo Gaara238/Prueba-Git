@@ -19,49 +19,31 @@ let p3 = {
     j: null
 }
 
+let figure = "X";
+
+let figureWin = null;
+
+let figureTurn = "X";
+
 Triki = JSON.parse(localStorage.getItem("Triki"));
 
-let figureValue = null;
-figureValue = localStorage.getItem("figureValue");
-
-function dontRepeateFigure(figure) {
-    if (figureValue === figure) {
-        if (figure === "X" || figure === "x") {
-            let f1 = "O";
-            alert("Es el turno de la figura " + f1);
-        } else if (figure === "O" || figure === "o") {
-            f1 = "X";
-            alert("Es el turno de la figura " + f1);
-        }
-    }
-}
-
 function saveFigure(x, y) {
-    let figure = document.getElementById("figure").value;
-    if (figure === "X" || figure === "O" || figure === "o" || figure === "x") {
-        if (x >= 0 && x <= 2) {
-            if (y >= 0 && y <= 2) {
-                if (Triki[x][y] === null) {
-                    if (figure !== figureValue) {
-                        Triki[x][y] = figure;
-                        loadTable();
-                        document.getElementById("figure").value = "";
-                        figureValue = figure;
-                        localStorage.setItem("figureValue", figureValue);
-                    } else {
-                        dontRepeateFigure(figure);
-                    }
-                } else {
-                    alert("Ya hay una figura en esta posición, intenta con otra");
-                }
-            } else {
-                alert("Los numeros insertados no coinciden con ninguna posicion de la tabla del triki, intente poner unos que si coincidan");
-            }
-        } else {
-            alert("Los numeros insertados no coinciden con ninguna posicion de la tabla del triki, intente poner unos que si coincidan");
+    if (Triki[x][y] === null) {
+        Triki[x][y] = figure;
+        figureWin = figure;
+        if (figure === "X") {
+            figureTurn = "O";
+        } else if (figure === "O") {
+            figureTurn = "X";
+        }
+            loadTable();
+        if (figure === "X") {
+            figure = "O";
+        } else if (figure === "O") {
+            figure = "X";
         }
     } else {
-        alert("La figura insertada no es X o O intente con una de estas figuras");
+        alert("Ya hay una figura en esta posición, intenta con otra");
     }
     console.log(Triki);
     trikiHorizontal();
@@ -72,7 +54,6 @@ function saveFigure(x, y) {
 }
 
 function buttonUpdate() {
-    document.getElementById("figure").value = "";
     document.getElementById("message").textContent = "";
     Triki = [
         [null, null, null],
@@ -81,11 +62,9 @@ function buttonUpdate() {
     ];
     console.log(Triki);
     localStorage.setItem("Triki", JSON.stringify(Triki));
-    figureValue = null;
-    localStorage.setItem("figureValue", figureValue);
+    figure = "X";
+    figureTurn = "X";
     loadTable();
-    document.getElementById("figure").disabled = false;
-    
 }
 
 function trikiHorizontal() {
@@ -107,9 +86,8 @@ function trikiHorizontal() {
             }
         }
         if (count === 2) {
-            document.getElementById("message").textContent = "EL JUGADOR " + figureValue + " A GANADO";
+            document.getElementById("message").textContent = "EL JUGADOR " + figureWin + " A GANADO";
             outlineGreenPosition();
-            document.getElementById("figure").disabled = true;
             break;
         }
     }
@@ -134,9 +112,8 @@ function trikiVertical() {
             }
         }
         if (count === 2) {
-            document.getElementById("message").textContent = "EL JUGADOR " + figureValue + " A GANADO";
+            document.getElementById("message").textContent = "EL JUGADOR " + figureWin + " A GANADO";
             outlineGreenPosition();
-            document.getElementById("figure").disabled = true;
             break;
         }
     }
@@ -150,9 +127,8 @@ function trikiDiagonal() {
         p2.j = 1;
         p3.i = 2;
         p3.j = 2;
-        document.getElementById("message").textContent = "EL JUGADOR  " + figureValue + "  A GANADO";
+        document.getElementById("message").textContent = "EL JUGADOR  " + figureWin + "  A GANADO";
         outlineGreenPosition();
-        document.getElementById("figure").disabled = true;
     }
 
     if (Triki[2][0] === Triki[1][1] && Triki[1][1] === Triki[0][2] && Triki[2][0] !== null && Triki[1][1] !== null && Triki[0][2] !== null) {
@@ -162,9 +138,8 @@ function trikiDiagonal() {
         p2.j = 1;
         p3.i = 0;
         p3.j = 2;
-        document.getElementById("message").textContent = "EL JUGADOR  " + figureValue + "  A GANADO";
+        document.getElementById("message").textContent = "EL JUGADOR  " + figureWin + "  A GANADO";
         outlineGreenPosition();
-        document.getElementById("figure").disabled = true;
     }
 }
 
@@ -184,6 +159,8 @@ function trikiTie() {
 
 function loadTable() {
     let table = document.getElementById("table");
+    let player = document.getElementById("player");
+    player.textContent = figureTurn;
     while (table.rows.length) {
         table.deleteRow(0);
     }
@@ -213,7 +190,7 @@ function clickCell(e) {
     saveFigure(e.target.dataset.x, e.target.dataset.y);
 }
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     loadTable();
     trikiVertical();
     trikiHorizontal();
