@@ -19,28 +19,38 @@ let p3 = {
     j: null
 }
 
-let figure = "X";
+let figure = localStorage.getItem("figure");
 
 let figureWin = null;
 
-let figureTurn = "X";
+let figureTurn = localStorage.getItem("figureTurn");
+
+let securityFigure = localStorage.getItem("securityFigure");
 
 Triki = JSON.parse(localStorage.getItem("Triki"));
 
 function saveFigure(x, y) {
     if (Triki[x][y] === null) {
-        Triki[x][y] = figure;
-        figureWin = figure;
-        if (figure === "X") {
-            figureTurn = "O";
-        } else if (figure === "O") {
-            figureTurn = "X";
-        }
-            loadTable();
-        if (figure === "X") {
-            figure = "O";
-        } else if (figure === "O") {
-            figure = "X";
+        if (figure !== securityFigure) {
+            Triki[x][y] = figure;
+            securityFigure = figure;
+            localStorage.setItem("securityFigure", securityFigure);
+            figureWin = figure;
+            if (figure === "X") {
+                figureTurn = "O";
+                localStorage.setItem("figureTurn", figureTurn);
+            } else if (figure === "O") {
+                figureTurn = "X";
+                localStorage.setItem("figureTurn", figureTurn);
+            }
+                loadTable();
+            if (figure === "X") {
+                figure = "O";
+                localStorage.setItem("figure", figure);
+            } else if (figure === "O") {
+                figure = "X";
+                localStorage.setItem("figure", figure);
+            }
         }
     } else {
         alert("Ya hay una figura en esta posición, intenta con otra");
@@ -64,6 +74,8 @@ function buttonUpdate() {
     localStorage.setItem("Triki", JSON.stringify(Triki));
     figure = "X";
     figureTurn = "X";
+    securityFigure = null;
+    localStorage.setItem("securityFigure", securityFigure);
     loadTable();
 }
 
