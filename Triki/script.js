@@ -191,15 +191,17 @@ function loadTable() {
 }
 
 function outlineGreenPosition() {
-    let table = document.getElementById("table");
+    let table = document.getElementById("table");               
     table.rows[p1.i].cells[p1.j].classList.add("outlineGreen");
     table.rows[p2.i].cells[p2.j].classList.add("outlineGreen");
     table.rows[p3.i].cells[p3.j].classList.add("outlineGreen");
 }
 
 function clickCell(e) {
-    console.log(e.target.dataset);
-    saveFigure(e.target.dataset.x, e.target.dataset.y);
+    let messageHTML = document.getElementById("message").textContent;
+    if (messageHTML === "") {
+        saveFigure(e.target.dataset.x, e.target.dataset.y);
+    }
 }
 
 window.addEventListener("load", function () {
