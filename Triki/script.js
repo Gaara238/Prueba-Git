@@ -195,6 +195,21 @@ function outlineGreenPosition() {
     table.rows[p1.i].cells[p1.j].classList.add("outlineGreen");
     table.rows[p2.i].cells[p2.j].classList.add("outlineGreen");
     table.rows[p3.i].cells[p3.j].classList.add("outlineGreen");
+    if (Triki[p1.i][p1.j] === "X") {
+        let winX = document.getElementById("winX").textContent;
+        winX = parseInt(winX) + 1;
+        document.getElementById("winX").textContent = winX;
+        localStorage.setItem("winX", winX);
+    } else if (Triki[p1.i][p1.j] === "O") {
+        let winO = document.getElementById("winO").textContent;
+        winO = parseInt(winO) + 1;
+        document.getElementById("winO").textContent = winO;
+        localStorage.setItem("winO", winO);
+    }
+}
+
+function buttonRefreshAccountant() {
+
 }
 
 function clickCell(e) {
