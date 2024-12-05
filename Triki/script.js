@@ -27,6 +27,8 @@ let figureTurn = localStorage.getItem("figureTurn");
 
 let securityFigure = localStorage.getItem("securityFigure");
 
+let refresh = true;
+
 Triki = JSON.parse(localStorage.getItem("Triki"));
 
 function saveFigure(x, y) {
@@ -43,7 +45,7 @@ function saveFigure(x, y) {
                 figureTurn = "X";
                 localStorage.setItem("figureTurn", figureTurn);
             }
-                loadTable();
+            loadTable();
             if (figure === "X") {
                 figure = "O";
                 localStorage.setItem("figure", figure);
@@ -191,20 +193,22 @@ function loadTable() {
 }
 
 function outlineGreenPosition() {
-    let table = document.getElementById("table");               
+    let table = document.getElementById("table");
     table.rows[p1.i].cells[p1.j].classList.add("outlineGreen");
     table.rows[p2.i].cells[p2.j].classList.add("outlineGreen");
     table.rows[p3.i].cells[p3.j].classList.add("outlineGreen");
-    if (Triki[p1.i][p1.j] === "X") {
-        let winX = document.getElementById("winX").textContent;
-        winX = parseInt(winX) + 1;
-        document.getElementById("winX").textContent = winX;
-        localStorage.setItem("winX", winX);
-    } else if (Triki[p1.i][p1.j] === "O") {
-        let winO = document.getElementById("winO").textContent;
-        winO = parseInt(winO) + 1;
-        document.getElementById("winO").textContent = winO;
-        localStorage.setItem("winO", winO);
+    if (refresh === false) {
+        if (Triki[p1.i][p1.j] === "X") {
+            let winX = document.getElementById("winX").textContent;
+            winX = parseInt(winX) + 1;
+            document.getElementById("winX").textContent = winX;
+            localStorage.setItem("winX", winX);
+        } else if (Triki[p1.i][p1.j] === "O") {
+            let winO = document.getElementById("winO").textContent;
+            winO = parseInt(winO) + 1;
+            document.getElementById("winO").textContent = winO;
+            localStorage.setItem("winO", winO);
+        }
     }
 }
 
@@ -225,4 +229,7 @@ window.addEventListener("load", function () {
     trikiHorizontal();
     trikiDiagonal();
     trikiTie();
+    document.getElementById("winX").textContent = localStorage.getItem("winX");
+    document.getElementById("winO").textContent = localStorage.getItem("winO");
+    refresh = false;
 });
