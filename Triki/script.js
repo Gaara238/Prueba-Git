@@ -84,7 +84,7 @@ function buttonUpdate() {
 function trikiHorizontal() {
     for (let i = 0; i < Triki.length; i++) {
         let count = 0;
-        for (let j = 0; j < Triki.length - i - 1; j++) {
+        for (let j = 0; j < Triki.length - 1; j++) {
             if (Triki[i][j] === Triki[i][j + 1] && Triki[i][j] !== null && Triki[i][j + 1] !== null) {
                 count++;
                 if (count === 1) {
@@ -213,7 +213,14 @@ function outlineGreenPosition() {
 }
 
 function buttonRefreshAccountant() {
-
+    let winX = document.getElementById("winX").textContent;
+    winX = 0;
+    document.getElementById("winX").textContent = winX;
+    localStorage.setItem("winX", winX);
+    let winO = document.getElementById("winO").textContent;
+    winO = 0;
+    document.getElementById("winO").textContent = winO;
+    localStorage.setItem("winO", winO);
 }
 
 function clickCell(e) {
