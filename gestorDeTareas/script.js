@@ -19,17 +19,14 @@ function addTask() {
 
 function listTasks() {
     let item = "";
-    let itemA = [];
     for (let i = 0; i < schedulerOfTasks.length; i++) {
-        if (schedulerOfTasks.status === false) {
-            item = schedulerOfTasks[i].id + ". [Completada] " + schedulerOfTasks[i].description;
-            itemA.push(item);
+        if (schedulerOfTasks[i].status === false) {
+            item = item + "\n" + schedulerOfTasks[i].id + ". [Pendiente] " + schedulerOfTasks[i].description;
         } else {
-            item = schedulerOfTasks[i].id + ". [Pendiente] " + schedulerOfTasks[i].description;
-            itemA.push(item);
+            item = item + "\n" + schedulerOfTasks[i].id + ". [Completada] " + schedulerOfTasks[i].description;
         }
     }
-    alert("Tareas:\n\n " + JSON.stringify(itemA));
+    alert("Tareas: " + item);
 }
 
 function checkTaskComplete() {
@@ -37,8 +34,8 @@ function checkTaskComplete() {
     for (let i = 0; i < schedulerOfTasks.length; i++) {
         if (p <= schedulerOfTasks.length) {
             if (schedulerOfTasks[i].id === p) {
-                if (schedulerOfTasks[i].status === true) {
-                    schedulerOfTasks.status = false;
+                if (schedulerOfTasks[i].status === false) {
+                    schedulerOfTasks[i].status = true;
                     alert("Tarea completada");
                 } else {
                     alert("Esta tarea ya esta marcada como completada");
@@ -51,11 +48,11 @@ function checkTaskComplete() {
 }
 
 function deleteTask() {
-    let p = prompt("Ingrese el id de la tarea a eliminar");
+    let p = parseInt(prompt("Ingrese el id de la tarea a eliminar"));
     let schedulerOfTasksTemp = [];
     let index = null;
     for (let i = 0; i < schedulerOfTasks.length; i++) {
-        if (p <= schedulerOfTasks) {
+        if (p <= schedulerOfTasks.length) {
             if (schedulerOfTasks[i].id === p) {
                 index = schedulerOfTasks[i];
             } else {
