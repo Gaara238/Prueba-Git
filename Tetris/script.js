@@ -26,8 +26,8 @@ let board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
 ];
 
 let square = [[1, 1], [1, 1]];
@@ -39,14 +39,11 @@ let z = [[1, 1], [0, 1, 1]];
 let t = [[0, 1, 0], [1, 1, 1]];
 
 function drawBoard() {
-    console.log(context);
     context.clearRect(0, 0, canvas.width, canvas.heigth);
     for (let i = 0; i < board.length; i++) {
-        for (let y = 0; y < board.length; y++) {
-            if (board[i][y]) {
-                console.log(i, y);
-                
-                drawBlock(i, y, "green");
+        for (let y = 0; y < board[i].length; y++) {
+            if (board[i][y] === 1) {
+                drawBlock(y, i, "green");
             }
         }
     }
@@ -68,4 +65,5 @@ window.addEventListener("DOMContentLoaded", function () {
     canvas = document.getElementById('canvas');
     context = canvas.getContext("2d");
     update();
+
 });
