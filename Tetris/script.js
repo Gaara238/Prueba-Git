@@ -47,7 +47,6 @@ let centralPosition = {
 
 let currentPiece = getRandomPiece();
 
-
 function drawBoard() {
     context.clearRect(0, 0, canvas.width, canvas.heigth);
     for (let i = 0; i < board.length; i++) {
@@ -86,6 +85,19 @@ function drawPiece(piece, position) {
         }
     }
 }
+
+function movePiece(x, y) {
+    context.clearRect(0, 0, canvas.width, canvas.heigth);
+    centralPosition.x = centralPosition.x + x;
+    centralPosition.y = centralPosition.y + y
+    console.log(centralPosition);
+}
+
+window.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowDown") {
+        movePiece(0, 1);
+    }
+})
 
 window.addEventListener("DOMContentLoaded", function () {
     canvas = document.getElementById('canvas');
