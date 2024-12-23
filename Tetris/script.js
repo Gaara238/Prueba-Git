@@ -26,8 +26,8 @@ let board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
 let square = [[1, 1], [1, 1]];
@@ -88,7 +88,28 @@ function drawPiece(piece, position) {
 
 function movePiece(x, y) {
     centralPosition.x = centralPosition.x + x;
-    centralPosition.y = centralPosition.y + y
+    centralPosition.y = centralPosition.y + y;
+    let collidesValue = collides(currentPiece, centralPosition);
+    if (collidesValue === true) {
+        console.log("Colición exitosa");
+
+    }
+}
+
+function collides(piece, position) {
+    for (let i = 0; i < piece.length; i++) {
+        for (let y = 0; y < piece[i].length; y++) {
+            if (piece[i][y] === 1) {
+                if (board[position.x][position.y]
+                    && (board[position.x + i][position.y + y] !== 0
+                        || position.x + i < 0
+                        || position.y + y >= rows
+                        || position.x + i >= columns)) {
+                    return true;
+                }
+            }
+        }
+    }
 }
 
 window.addEventListener("keydown", function (e) {
