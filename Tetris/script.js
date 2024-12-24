@@ -102,15 +102,33 @@ function drawPiece(piece, position) {
 }
 
 function movePiece(x, y) {
-    let previousPosition = {
-        x: centralPosition.x,
-        y: centralPosition.y
-    }
+  let previousPosition = {
+    x: centralPosition.x,
+    y: centralPosition.y,
+  };
   centralPosition.x = centralPosition.x + x;
   centralPosition.y = centralPosition.y + y;
   let collidesValue = collides(currentPiece, centralPosition);
   if (collidesValue === true) {
     centralPosition = previousPosition;
+    if (y > 0) {
+      mergePiece();
+      currentPiece = getRandomPiece();
+      centralPosition.x = 4;
+      centralPosition.y = 0;
+    }
+  }
+}
+
+function mergePiece() {
+  for (let i = 0; i < currentPiece.length; i++) {
+    for (let y = 0; y < currentPiece[i].length; y++) {
+      if (currentPiece[i][y] === 1) {
+        if (board[centralPosition.y + i]) {
+          board[centralPosition.y + i][centralPosition.x + y] = 1;
+        }
+      }
+    }
   }
 }
 
