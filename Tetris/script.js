@@ -34,18 +34,23 @@ let square = [
   [1, 1],
   [1, 1],
 ];
-let rectangle = [[1, 1, 1, 1]];
-let l = [[1], [1, 1, 1]];
+let rectangle = [
+  [1, 1, 1, 1]
+];
+let l = [
+  [1, 0, 0],
+  [1, 1, 1],
+];
 let j = [
   [0, 0, 1],
   [1, 1, 1],
 ];
 let s = [
   [0, 1, 1],
-  [1, 1],
+  [1, 1, 0],
 ];
 let z = [
-  [1, 1],
+  [1, 1, 0],
   [0, 1, 1],
 ];
 let t = [
@@ -150,6 +155,27 @@ function collides(piece, position) {
   }
 }
 
+function rotatePiece() {
+  let pieceR = [];
+  let pX = currentPiece[0].length;
+  let pY = currentPiece.length;
+  // for (let i = 0; i < currentPiece.length; i++) {
+  //   pY++;
+  //   if (i === 0) {
+  //     for (let y = 0; y < currentPiece[i].length; y++) {
+  //       pX++;
+  //     }
+  //   }
+  // }
+  for (let i = 0; i < pX; i++) {
+    pieceR.push([]);
+    for (let y = 0; y < pY; y++) {
+      pieceR[i][y] = 0;
+    }
+  }
+  console.log(pieceR);
+}
+
 window.addEventListener("keydown", function (e) {
   switch (e.key) {
     case "ArrowDown":
@@ -160,6 +186,9 @@ window.addEventListener("keydown", function (e) {
       break;
     case "ArrowRight":
       movePiece(1, 0);
+      break;
+    case " ":
+      rotatePiece();
       break;
   }
 });
