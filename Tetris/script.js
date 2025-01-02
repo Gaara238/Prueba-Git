@@ -27,16 +27,14 @@ let board = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
 let square = [
   [1, 1],
   [1, 1],
 ];
-let rectangle = [
-  [1, 1, 1, 1]
-];
+let rectangle = [[1, 1, 1, 1]];
 let l = [
   [0, 0, 1],
   [1, 1, 1],
@@ -89,6 +87,7 @@ function update() {
   drawBoard();
   drawPiece(currentPiece, centralPosition);
   requestAnimationFrame(update);
+  whoIsTheRow();
 }
 
 function getRandomPiece() {
@@ -166,7 +165,46 @@ function rotatePiece() {
     }
   }
   currentPiece = pieceR;
-  
+}
+
+function whoIsTheRow() {
+  for (let i = 0; i < board.length; i++) {
+    let count = 0;
+    for (let y = 0; y < board[i].length - 1; y++) {
+      if (
+        board[i][y] === board[i][y + 1] &&
+        board[i][y] !== 0 &&
+        board[i][y + 1] !== 0
+      ) {
+        count++;
+      }
+    }
+    if (count === 9) {
+      deleteRow(i);
+      fallingPieces();
+    }
+  }
+}
+
+function deleteRow(x) {
+  board[x][0] = 0;
+  board[x][1] = 0;
+  board[x][2] = 0;
+  board[x][3] = 0;
+  board[x][4] = 0;
+  board[x][5] = 0;
+  board[x][6] = 0;
+  board[x][7] = 0;
+  board[x][8] = 0;
+  board[x][9] = 0;
+}
+
+function fallingPieces() {
+  for (let i = 0; i < board.length - 1; i++) {
+    for (let y = 0; i < board[i].length; y++) {
+      board[i + 1][y] = board[i][y];
+    }
+  }
 }
 
 window.addEventListener("keydown", function (e) {
