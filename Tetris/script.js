@@ -65,6 +65,8 @@ let centralPosition = {
 
 let currentPiece = getRandomPiece();
 
+let point = parseInt(document.getElementById("point").textContent);
+
 function drawBoard() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   for (let i = 0; i < board.length; i++) {
@@ -180,8 +182,12 @@ function whoIsTheRow() {
       }
     }
     if (count === 9) {
-      deleteRow(i);
+      deleteRow(i);      
+      point = point + 1;
+      document.getElementById("point").textContent = point;
       fallingPieces();
+
+      
     }
   }
 }
@@ -200,19 +206,19 @@ function deleteRow(x) {
 }
 
 function fallingPieces() {
-  let count = 0;
+  let count = false;
   for (let i = 0; i < board.length - 1; i++) {
     for (let y = 0; y < board[i].length; y++) {
       if (board[i][y] === 1) {
-        count++;
         let varTemp = board[i + 1][y];
         board[i + 1][y] = board[i][y];
         board[i][y] = varTemp;
+        count = true;
       }
     }
   }
-  if (count > 0) {
-    fallingPieces();
+  if (count === true) {
+    setTimeout(fallingPieces, 50)
   }
 }
 
