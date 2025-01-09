@@ -27,7 +27,7 @@ let board = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
 let square = [
@@ -200,10 +200,19 @@ function deleteRow(x) {
 }
 
 function fallingPieces() {
+  let count = 0;
   for (let i = 0; i < board.length - 1; i++) {
-    for (let y = 0; i < board[i].length; y++) {
-      board[i + 1][y] = board[i][y];
+    for (let y = 0; y < board[i].length; y++) {
+      if (board[i][y] === 1) {
+        count++;
+        let varTemp = board[i + 1][y];
+        board[i + 1][y] = board[i][y];
+        board[i][y] = varTemp;
+      }
     }
+  }
+  if (count > 0) {
+    fallingPieces();
   }
 }
 
