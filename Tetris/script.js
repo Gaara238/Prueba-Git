@@ -1,5 +1,7 @@
 let canvas = document.getElementById("canvas");
+let canvasNextFigure = document.getElementById("canvasNextFigure");
 let context = null;
+let contextNextFigure = null;
 
 //Configuración de tamaño del tablero
 let rows = 20;
@@ -28,6 +30,14 @@ let board = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+];
+
+let boardNextFigure = [
+  [0, 0, 0, 0, 0],
+  [0, 0, 1, 0, 0],
+  [0, 1, 1, 1, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
 ];
 
 let square = [
@@ -85,11 +95,38 @@ function drawBlock(x, y, color) {
   context.strokeRect(x * blockSize, y * blockSize, blockSize, blockSize);
 }
 
+function drawBoardNextFigure() {
+  console.log("text");
+  contextNextFigure.clearRect(
+    0,
+    0,
+    canvasNextFigure.width,
+    canvasNextFigure.height
+  );
+  for (let i = 0; i < boardNextFigure.length; i++) {
+    for (let y = 0; y < boardNextFigure[i].length; y++) {
+      if (boardNextFigure[i][y] === 1) {
+        drawBlockNextFigure(y, i, "green");
+        console.log(y, i);
+        
+      }
+    }
+  }
+}
+
+function drawBlockNextFigure(x, y, color) {
+  contextNextFigure.fillStyle = color;
+  contextNextFigure.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
+  contextNextFigure.strokeStyle = "#222";
+  contextNextFigure.strokeRect(x * blockSize, y * blockSize, blockSize, blockSize);
+}
+
 function update() {
   setTimeout(function () {
     movePiece(0, 1);
     drawBoard();
     drawPiece(currentPiece, centralPosition);
+    drawBlockNextFigure();
     requestAnimationFrame(update);
     whoIsTheRow();
   }, 300);
@@ -243,5 +280,6 @@ window.addEventListener("keydown", function (e) {
 window.addEventListener("DOMContentLoaded", function () {
   canvas = document.getElementById("canvas");
   context = canvas.getContext("2d");
+  contextNextFigure = canvasNextFigure.getContext("2d");
   update();
 });
