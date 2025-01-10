@@ -86,10 +86,13 @@ function drawBlock(x, y, color) {
 }
 
 function update() {
-  drawBoard();
-  drawPiece(currentPiece, centralPosition);
-  requestAnimationFrame(update);
-  whoIsTheRow();
+  setTimeout(function () {
+    movePiece(0, 1);
+    drawBoard();
+    drawPiece(currentPiece, centralPosition);
+    requestAnimationFrame(update);
+    whoIsTheRow();
+  }, 300);
 }
 
 function getRandomPiece() {
@@ -182,12 +185,10 @@ function whoIsTheRow() {
       }
     }
     if (count === 9) {
-      deleteRow(i);      
+      deleteRow(i);
       point = point + 1;
       document.getElementById("point").textContent = point;
       fallingPieces();
-
-      
     }
   }
 }
@@ -218,7 +219,7 @@ function fallingPieces() {
     }
   }
   if (count === true) {
-    setTimeout(fallingPieces, 50)
+    setTimeout(fallingPieces, 50);
   }
 }
 
