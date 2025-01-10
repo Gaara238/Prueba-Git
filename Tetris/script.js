@@ -32,14 +32,6 @@ let board = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
-let boardNextFigure = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 1, 1, 1, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-];
-
 let square = [
   [1, 1],
   [1, 1],
@@ -73,7 +65,13 @@ let centralPosition = {
   y: 0,
 };
 
+let centralPositionNextFigure = {
+  x: 1,
+  y: 1,
+};
+
 let currentPiece = getRandomPiece();
+let currentPiece2 = getRandomPiece();
 
 let point = parseInt(document.getElementById("point").textContent);
 
@@ -95,20 +93,17 @@ function drawBlock(x, y, color) {
   context.strokeRect(x * blockSize, y * blockSize, blockSize, blockSize);
 }
 
-function drawBoardNextFigure() {
-  console.log("text");
+function drawNextPiece(piece, position) {
   contextNextFigure.clearRect(
     0,
     0,
     canvasNextFigure.width,
     canvasNextFigure.height
   );
-  for (let i = 0; i < boardNextFigure.length; i++) {
-    for (let y = 0; y < boardNextFigure[i].length; y++) {
-      if (boardNextFigure[i][y] === 1) {
-        drawBlockNextFigure(y, i, "green");
-        console.log(y, i);
-        
+  for (let i = 0; i < piece.length; i++) {
+    for (let y = 0; y < piece[i].length; y++) {
+      if (piece[i][y] === 1) {
+        drawBlockNextFigure(position.x + y, position.y + i, "red");
       }
     }
   }
@@ -116,17 +111,27 @@ function drawBoardNextFigure() {
 
 function drawBlockNextFigure(x, y, color) {
   contextNextFigure.fillStyle = color;
-  contextNextFigure.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
+  contextNextFigure.fillRect(
+    x * blockSize,
+    y * blockSize,
+    blockSize,
+    blockSize
+  );
   contextNextFigure.strokeStyle = "#222";
-  contextNextFigure.strokeRect(x * blockSize, y * blockSize, blockSize, blockSize);
+  contextNextFigure.strokeRect(
+    x * blockSize,
+    y * blockSize,
+    blockSize,
+    blockSize
+  );
 }
 
 function update() {
   setTimeout(function () {
-    movePiece(0, 1);
+    // movePiece(0, 1);
     drawBoard();
     drawPiece(currentPiece, centralPosition);
-    drawBlockNextFigure();
+    drawNextPiece(currentPiece2, centralPositionNextFigure);
     requestAnimationFrame(update);
     whoIsTheRow();
   }, 300);
@@ -159,7 +164,8 @@ function movePiece(x, y) {
     centralPosition = previousPosition;
     if (y > 0) {
       mergePiece();
-      currentPiece = getRandomPiece();
+      currentPiece = currentPiece2;
+      currentPiece2 = getRandomPiece();
       centralPosition.x = 4;
       centralPosition.y = 0;
     }
