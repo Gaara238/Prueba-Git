@@ -128,7 +128,7 @@ function drawBlockNextFigure(x, y, color) {
 
 function update() {
   setTimeout(function () {
-    // movePiece(0, 1);
+    movePiece(0, 1);
     drawBoard();
     drawPiece(currentPiece, centralPosition);
     drawNextPiece(currentPiece2, centralPositionNextFigure);
@@ -251,8 +251,8 @@ function deleteRow(x) {
 
 function fallingPieces() {
   let count = false;
-  for (let i = 0; i < board.length - 1; i++) {
-    for (let y = 0; y < board[i].length; y++) {
+  for (let i = board.length - 1; i >= 0; i--) {
+    for (let y = board[i].length; y >= 0; y--) {
       if (board[i][y] === 1) {
         let varTemp = board[i + 1][y];
         board[i + 1][y] = board[i][y];
