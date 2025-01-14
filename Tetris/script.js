@@ -2,6 +2,7 @@ let canvas = document.getElementById("canvas");
 let canvasNextFigure = document.getElementById("canvasNextFigure");
 let context = null;
 let contextNextFigure = null;
+let isGameOver = false;
 
 //Configuración de tamaño del tablero
 let rows = 20;
@@ -127,14 +128,17 @@ function drawBlockNextFigure(x, y, color) {
 }
 
 function update() {
-  setTimeout(function () {
-    movePiece(0, 1);
-    drawBoard();
-    drawPiece(currentPiece, centralPosition);
-    drawNextPiece(currentPiece2, centralPositionNextFigure);
-    requestAnimationFrame(update);
-    whoIsTheRow();
-  }, 300);
+  if (isGameOver === false) {
+    setTimeout(function () {
+      movePiece(0, 1);
+      drawBoard();
+      drawPiece(currentPiece, centralPosition);
+      drawNextPiece(currentPiece2, centralPositionNextFigure);
+      requestAnimationFrame(update);
+      whoIsTheRow();
+      gameOver();
+    }, 300);
+  }
 }
 
 function getRandomPiece() {
@@ -252,7 +256,7 @@ function deleteRow(x) {
 function fallingPieces() {
   let count = false;
   for (let i = board.length - 1; i >= 0; i--) {
-    for (let y = board[i].length; y >= 0; y--) {
+    for (let y = board[i].length - 1; y >= 0; y--) {
       if (board[i][y] === 1) {
         let varTemp = board[i + 1][y];
         board[i + 1][y] = board[i][y];
@@ -264,6 +268,45 @@ function fallingPieces() {
   if (count === true) {
     setTimeout(fallingPieces, 50);
   }
+}
+
+function gameOver() {
+  for (let i = 0; i < board.length; i++) {
+    for (let y = 0; y < board[i].length; y++) {
+      if (i === 0) {
+        if (board[i][y] === 1) {
+          let message = document.getElementById("gameOver").textContent;
+          message = "GAME OVER";
+          document.getElementById("gameOver").textContent = message;
+          for (let x = 0; x < board.length; x++) {
+            for (let a = 0; a < board[x].length; a++) {
+              board[x][a] = 0;
+            }
+          }
+          context.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+          );
+          isGameOver = true;
+          let gameOverZone = document.getElementById("gameOverZone");
+          let buttonRestart = document.createElement("button");
+          buttonRestart.onclick = restartGame;
+          buttonRestart.textContent = "Volver a jugar";
+          buttonRestart.id = "buttonRestart";
+          gameOverZone.appendChild(buttonRestart);
+        }
+      }
+    }
+  }
+}
+
+function restartGame() {
+  isGameOver = false;
+  update();
+  document.getElementById("gameOver").textContent = "";
+  document.getElementById("buttonRestart").remove();
 }
 
 window.addEventListener("keydown", function (e) {
