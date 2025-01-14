@@ -3,6 +3,7 @@ let canvasNextFigure = document.getElementById("canvasNextFigure");
 let context = null;
 let contextNextFigure = null;
 let isGameOver = false;
+let speed = 300;
 
 //Configuración de tamaño del tablero
 let rows = 20;
@@ -136,8 +137,9 @@ function update() {
       drawNextPiece(currentPiece2, centralPositionNextFigure);
       requestAnimationFrame(update);
       whoIsTheRow();
+      levels();
       gameOver();
-    }, 300);
+    }, speed);
   }
 }
 
@@ -318,6 +320,25 @@ function restartGame() {
   point = 0;
   document.getElementById("point").textContent = point;
 }
+
+function levels() {
+  if (point === 20) {
+    speed = 260;
+  }
+  if (point === 40) {
+    speed = 220;
+  }
+  if (point === 60) {
+    speed = 180;
+  }
+  if (point === 80) {
+    speed = 140;
+  }
+  if (point === 100) {
+    speed = 100;
+  }
+}
+
 
 window.addEventListener("keydown", function (e) {
   switch (e.key) {
