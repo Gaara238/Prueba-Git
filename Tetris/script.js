@@ -289,6 +289,12 @@ function gameOver() {
             canvas.width,
             canvas.height
           );
+          contextNextFigure.clearRect(
+            0,
+            0,
+            canvasNextFigure.width,
+            canvasNextFigure.height
+          );
           isGameOver = true;
           let gameOverZone = document.getElementById("gameOverZone");
           let buttonRestart = document.createElement("button");
@@ -296,6 +302,7 @@ function gameOver() {
           buttonRestart.textContent = "Volver a jugar";
           buttonRestart.id = "buttonRestart";
           gameOverZone.appendChild(buttonRestart);
+          document.getElementById("score").textContent = "Puntaje alcanzado: " + point;
         }
       }
     }
@@ -306,7 +313,10 @@ function restartGame() {
   isGameOver = false;
   update();
   document.getElementById("gameOver").textContent = "";
+  document.getElementById("score").textContent = "";
   document.getElementById("buttonRestart").remove();
+  point = 0;
+  document.getElementById("point").textContent = point;
 }
 
 window.addEventListener("keydown", function (e) {
