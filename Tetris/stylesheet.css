@@ -11,3 +11,8 @@ body {
     border: 2px solid #ffffff;
     background-color: #000;
   }
+
+  #maxScore, #point, #level {
+    border: 2px solid #ffffff;
+    background-color: #000;
+  }

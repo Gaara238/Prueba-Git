@@ -5,6 +5,7 @@ let context = null;
 let contextNextFigure = null;
 let isGameOver = false;
 let speed = 300;
+let maxScore = 0;
 
 //Configuración de tamaño del tablero
 let rows = 20;
@@ -76,7 +77,7 @@ let centralPositionNextFigure = {
 let currentPiece = getRandomPiece();
 let currentPiece2 = getRandomPiece();
 
-let point = parseInt(document.getElementById("point").textContent);
+let point = 0;
 
 function drawBoard() {
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -237,7 +238,7 @@ function whoIsTheRow() {
     if (count === 9) {
       deleteRow(i);
       point = point + 1;
-      document.getElementById("point").textContent = point;
+      document.getElementById("point").textContent = "Puntaje actual: " + point;
       fallingPieces();
     }
   }
@@ -306,6 +307,10 @@ function gameOver() {
           buttonRestart.id = "buttonRestart";
           gameOverZone.appendChild(buttonRestart);
           document.getElementById("score").textContent = "Puntaje alcanzado: " + point;
+          if (point > maxScore) {
+            maxScore = point;
+            document.getElementById("maxScore").textContent = "Maximo puntaje: " + maxScore;
+          }
         }
       }
     }
@@ -319,7 +324,7 @@ function restartGame() {
   document.getElementById("score").textContent = "";
   document.getElementById("buttonRestart").remove();
   point = 0;
-  document.getElementById("point").textContent = point;
+  document.getElementById("point").textContent = "Puntaje actual: " + point;
   document.getElementById("level").textContent = "NIVEL: 1"
 }
 
