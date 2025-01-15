@@ -6,6 +6,9 @@ let contextNextFigure = null;
 let isGameOver = false;
 let speed = 300;
 let maxScore = 0;
+let playersWin = [];
+playersWin = JSON.parse(localStorage.getItem("playersWin"));
+
 
 //Configuración de tamaño del tablero
 let rows = 20;
@@ -287,12 +290,7 @@ function gameOver() {
               board[x][a] = 0;
             }
           }
-          context.clearRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-          );
+          context.clearRect(0, 0, canvas.width, canvas.height);
           contextNextFigure.clearRect(
             0,
             0,
@@ -306,10 +304,12 @@ function gameOver() {
           buttonRestart.textContent = "Volver a intentarlo";
           buttonRestart.id = "buttonRestart";
           gameOverZone.appendChild(buttonRestart);
-          document.getElementById("score").textContent = "Puntaje alcanzado: " + point;
+          document.getElementById("score").textContent =
+            "Puntaje alcanzado: " + point;
           if (point > maxScore) {
             maxScore = point;
-            document.getElementById("maxScore").textContent = "Maximo puntaje: " + maxScore;
+            document.getElementById("maxScore").textContent =
+              "Maximo puntaje: " + maxScore;
           }
         }
       }
@@ -325,29 +325,30 @@ function restartGame() {
   document.getElementById("buttonRestart").remove();
   point = 0;
   document.getElementById("point").textContent = "Puntaje actual: " + point;
-  document.getElementById("level").textContent = "NIVEL: 1"
+  document.getElementById("level").textContent = "NIVEL: 1";
 }
 
 function levels() {
   if (point === 20 || point > 20) {
     speed = 260;
-    document.getElementById("level").textContent = "NIVEL: 2"
+    document.getElementById("level").textContent = "NIVEL: 2";
   }
   if (point === 40 || point > 40) {
     speed = 220;
-    document.getElementById("level").textContent = "NIVEL: 3"
+    document.getElementById("level").textContent = "NIVEL: 3";
   }
   if (point === 60 || point > 60) {
     speed = 180;
-    document.getElementById("level").textContent = "NIVEL: 4"
+    document.getElementById("level").textContent = "NIVEL: 4";
   }
   if (point === 80 || point > 80) {
     speed = 140;
-    document.getElementById("level").textContent = "NIVEL: 5"
+    document.getElementById("level").textContent = "NIVEL: 5";
   }
   if (point === 100 || point > 100) {
+    createTable();
     speed = 100;
-    document.getElementById("level").textContent = "NIVEL: 6"
+    document.getElementById("level").textContent = "NIVEL: 6";
     let win = document.getElementById("win").textContent;
     win = "YOU WIN";
     document.getElementById("win").textContent = win;
@@ -356,12 +357,7 @@ function levels() {
         board[x][a] = 0;
       }
     }
-    context.clearRect(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
+    context.clearRect(0, 0, canvas.width, canvas.height);
     contextNextFigure.clearRect(
       0,
       0,
@@ -386,9 +382,23 @@ function restartGameAfterWin() {
   document.getElementById("buttonRestartGame").remove();
   point = 0;
   document.getElementById("point").textContent = point;
-  document.getElementById("level").textContent = "LEVEL 1"
+  document.getElementById("level").textContent = "LEVEL 1";
 }
 
+function createTable() {
+  if (point === 100 || point > 100) {
+    playersWin.push(playerName);
+    let table = document.getElementById("table");
+    for (let i = 0; i < playersWin.length; i++) {
+      let tr = document.createElement("tr");
+      let td = document.createElement("td");
+      td.textContent = playersWin[i];
+      tr.appendChild(td);
+      table.appendChild(tr);
+      localStorage.setItem("playersWin", JSON.stringify(playersWin));
+    }
+  }
+}
 
 window.addEventListener("keydown", function (e) {
   switch (e.key) {
