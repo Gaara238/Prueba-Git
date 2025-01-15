@@ -1,3 +1,4 @@
+let playerName = prompt("¿Cual es tu nombre de jugador?");
 let canvas = document.getElementById("canvas");
 let canvasNextFigure = document.getElementById("canvasNextFigure");
 let context = null;
@@ -301,7 +302,7 @@ function gameOver() {
           let gameOverZone = document.getElementById("gameOverZone");
           let buttonRestart = document.createElement("button");
           buttonRestart.onclick = restartGame;
-          buttonRestart.textContent = "Volver a jugar";
+          buttonRestart.textContent = "Volver a intentarlo";
           buttonRestart.id = "buttonRestart";
           gameOverZone.appendChild(buttonRestart);
           document.getElementById("score").textContent = "Puntaje alcanzado: " + point;
@@ -319,24 +320,68 @@ function restartGame() {
   document.getElementById("buttonRestart").remove();
   point = 0;
   document.getElementById("point").textContent = point;
+  document.getElementById("level").textContent = "NIVEL: 1"
 }
 
 function levels() {
-  if (point === 20) {
+  if (point === 20 || point > 20) {
     speed = 260;
+    document.getElementById("level").textContent = "NIVEL: 2"
   }
-  if (point === 40) {
+  if (point === 40 || point > 40) {
     speed = 220;
+    document.getElementById("level").textContent = "NIVEL: 3"
   }
-  if (point === 60) {
+  if (point === 60 || point > 60) {
     speed = 180;
+    document.getElementById("level").textContent = "NIVEL: 4"
   }
-  if (point === 80) {
+  if (point === 80 || point > 80) {
     speed = 140;
+    document.getElementById("level").textContent = "NIVEL: 5"
   }
-  if (point === 100) {
+  if (point === 100 || point > 100) {
     speed = 100;
+    document.getElementById("level").textContent = "NIVEL: 6"
+    let win = document.getElementById("win").textContent;
+    win = "YOU WIN";
+    document.getElementById("win").textContent = win;
+    for (let x = 0; x < board.length; x++) {
+      for (let a = 0; a < board[x].length; a++) {
+        board[x][a] = 0;
+      }
+    }
+    context.clearRect(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+    contextNextFigure.clearRect(
+      0,
+      0,
+      canvasNextFigure.width,
+      canvasNextFigure.height
+    );
+    isGameOver = true;
+    let winZone = document.getElementById("winZone");
+    let buttonRestartGame = document.createElement("button");
+    buttonRestartGame.onclick = restartGameAfterWin;
+    buttonRestartGame.textContent = "Volver a jugar";
+    buttonRestartGame.id = "buttonRestartGame";
+    winZone.appendChild(buttonRestartGame);
   }
+}
+
+function restartGameAfterWin() {
+  isGameOver = false;
+  speed = 300;
+  update();
+  document.getElementById("win").textContent = "";
+  document.getElementById("buttonRestartGame").remove();
+  point = 0;
+  document.getElementById("point").textContent = point;
+  document.getElementById("level").textContent = "LEVEL 1"
 }
 
 
