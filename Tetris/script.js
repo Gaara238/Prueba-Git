@@ -9,7 +9,6 @@ let maxScore = 0;
 let playersWin = [];
 playersWin = JSON.parse(localStorage.getItem("playersWin"));
 
-
 //Configuración de tamaño del tablero
 let rows = 20;
 let columns = 10;
@@ -136,7 +135,7 @@ function drawBlockNextFigure(x, y, color) {
 function update() {
   if (isGameOver === false) {
     setTimeout(function () {
-      movePiece(0, 1);
+      // movePiece(0, 1);
       drawBoard();
       drawPiece(currentPiece, centralPosition);
       drawNextPiece(currentPiece2, centralPositionNextFigure);
@@ -261,19 +260,14 @@ function deleteRow(x) {
 }
 
 function fallingPieces() {
-  let count = false;
-  for (let i = board.length - 1; i >= 0; i--) {
+  for (let i = board.length - 2; i >= 0; i--) {
     for (let y = board[i].length - 1; y >= 0; y--) {
       if (board[i][y] === 1) {
         let varTemp = board[i + 1][y];
         board[i + 1][y] = board[i][y];
         board[i][y] = varTemp;
-        count = true;
       }
     }
-  }
-  if (count === true) {
-    setTimeout(fallingPieces, 50);
   }
 }
 
