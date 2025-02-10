@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <p>Cliente VIP? (Si o No):</p>
+    <p>¿Cliente VIP? (Si o No):</p>
     <br />
     <input type="text" id="vip">
     <br />
@@ -24,13 +24,26 @@
     <input type="text" id="plate">
     <br />
     <br />
-    <p>Tipo de vehiculo</p>
+    <p>Tipo de vehiculo:</p>
     <br />
     <input type="text" id="vehicleType">
     <br />
     <br />
-    <button>Guardar</button>
-    <button>Mostrar el parqueadero</button>
+    <p>¿Cuanto tiempo se va a quedar?</p>
+    <br />
+    <input type="text" id="time">
+    <br />
+    <br />
+    <button onclick="save()">Guardar</button>
+    <button onclick="showParking()">Mostrar el parqueadero</button>
+    <table id="table">
+        <tr>
+            <th>¿Cliente VIP?</th>
+            <th>Nombre del propietario</th>
+            <th>Placa del vehiculo</th>
+            <th>Tipo de vehiculo</th>
+        </tr>
+    </table>
 </body>
 
 </html>
