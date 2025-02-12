@@ -10,7 +10,11 @@ class Vehicle {
 let vehicles = [];
 
 function save() {
+  let pr = prompt(
+    "Cuanto tiempo se va a quedar en el parqueadero (solo ponga el numero de tiempo)"
+  );
   let vip = document.getElementById("vip").value;
+  let ownerName = null;
   if (vip === "Si" || vip === "sI" || vip === "SI" || vip === "si") {
     let p = prompt("¿Cual es el codigo VIP?");
     if (p === "53789") {
@@ -22,24 +26,23 @@ function save() {
   } else if (vip === "No" || vip === "nO" || vip === "NO" || vip === "no") {
     vip = false;
   }
-  if (vehicles.length < 2) {
-    let ownerName = document.getElementById("name").value;
+  if (vehicles.length < 1) {
+    ownerName = document.getElementById("name").value;
     let plate = document.getElementById("plate").value;
     let vehicleType = document.getElementById("vehicleType").value;
     let vehicle = new Vehicle(vip, ownerName, plate, vehicleType);
     vehicles.push(vehicle);
   } else if (vip) {
-    let ownerName = document.getElementById("name");
-    let plate = document.getElementById("plate");
-    let vehicleType = document.getElementById("vehicleType");
+    ownerName = document.getElementById("name").value;
+    let plate = document.getElementById("plate").value;
+    let vehicleType = document.getElementById("vehicleType").value;
     let vehicle = new Vehicle(vip, ownerName, plate, vehicleType);
     vehicles.push(vehicle);
   } else {
-    let p2 = prompt(
-      "Los parqueaderos disponibles estan llenos, puede esperar a que se desocupe uno o se puede ir \n 1. Esperar\n 2. Irse"
-    );
+    alert("Los parqueaderos disponibles estan llenos");
   }
   cleanInputs();
+  exitVehicle(ownerName, parseInt(pr));
 }
 
 function showParking() {
@@ -72,4 +75,20 @@ function cleanInputs() {
   document.getElementById("name").value = "";
   document.getElementById("plate").value = "";
   document.getElementById("vehicleType").value = "";
+}
+
+function exitVehicle(name, time) {
+  setTimeout(function () {
+    console.log("TOY VIVO " + name);
+    let vehiclesTemp = [];
+    for (let i = 0; i < vehicles.length; i++) {
+      if (vehicles[i].name === name) {
+        break;
+      } else {
+        vehiclesTemp.push(vehicles[i]);
+      }
+    }
+    vehicles = vehiclesTemp;
+    console.log(vehicles);
+  }, time * 1000);
 }
