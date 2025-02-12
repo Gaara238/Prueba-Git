@@ -46,16 +46,16 @@ function save() {
 }
 
 function showParking() {
+  cleanTable();
   let table = document.getElementById("table");
   for (let i = 0; i < vehicles.length; i++) {
     let tr = document.createElement("tr");
     let td1 = document.createElement("td");
     if (vehicles[i].vip) {
-      vehicles[i].vip = "SI";
+      td1.textContent = "SI";
     } else {
-      vehicles[i].vip = "NO";
+      td1.textContent = "NO";
     }
-    td1.textContent = vehicles[i].vip;
     tr.appendChild(td1);
     let td2 = document.createElement("td");
     td2.textContent = vehicles[i].name;
@@ -91,4 +91,11 @@ function exitVehicle(name, time) {
     vehicles = vehiclesTemp;
     console.log(vehicles);
   }, time * 1000);
+}
+
+function cleanTable() {
+  let table = document.getElementById("table");
+  while (table.rows.length > 1) {
+    table.deleteRow(1);
+  }
 }
