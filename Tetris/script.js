@@ -135,7 +135,7 @@ function drawBlockNextFigure(x, y, color) {
 function update() {
   if (isGameOver === false) {
     setTimeout(function () {
-      // movePiece(0, 1);
+      movePiece(0, 1);
       drawBoard();
       drawPiece(currentPiece, centralPosition);
       drawNextPiece(currentPiece2, centralPositionNextFigure);
