@@ -1,0 +1,21 @@
+#zoneOne {
+    margin-top: 10;
+}
+
+.container-menu {
+    width: fit-content;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+#base {
+    margin: 15px;
+}
+
+.youtube-left {
+    font-size: 25px;
+}
+
+.btn-circle {
+    border-radius: 50% !important;
+}
