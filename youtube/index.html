@@ -10,9 +10,9 @@
 </head>
 
 <body>
-    <div class="container" id="base">
+    <div id="base">
         <div class="row">
-            <div class="col-12" id="zoneOne">
+            <div class="col-12" id="zone-one">
                 <div class="row">
                     <div class="col-4">
                         <div class="container-menu">
@@ -22,18 +22,30 @@
                         <b style="font-size: 25px;" class="youtube-left">Youtube</b>
                     </div>
                     <div class="col-6">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Search"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
-                                    class="bi bi-search"></i></button>
+                        <div class="container-search">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
+                                        class="bi bi-search"></i></button>
+                            </div>
                         </div>
-                        <div>
+                        <div class="container-btn-microphone">
                             <button class="btn btn-light btn-circle"><i class="bi bi-mic-fill"></i></button>
                         </div>
                     </div>
                     <div class="col-2">
-                        <p>zona de usuario</p>
+                        <div class="container-zone-user">
+                            <button class="btn btn-light"><i
+                                    class="bi bi-plus-lg container-btn-create"></i><label>Create</label></button>
+                        </div>
+                        <div class="container-zone-user">
+                            <button class="btn btn-light btn-circle"><i class="bi bi-bell"></i></button>
+                        </div>
+                        <div class="container-zone-user">
+                            <button class="btn btn-light btn-circle"><i class="bi bi-person-circle"></i></button>
+
+                        </div>
                     </div>
                 </div>
 

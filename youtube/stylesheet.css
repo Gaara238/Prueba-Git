@@ -1,4 +1,4 @@
-#zoneOne {
+#zone-one {
     margin-top: 10;
 }
 
@@ -18,4 +18,26 @@
 
 .btn-circle {
     border-radius: 50% !important;
+}
+
+.container-btn-create {
+    width: fit-content;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.container-search {
+    width: 75%  !important;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.container-btn-microphone {
+    width: fit-content;
+    display: inline-block;
+}
+
+.container-zone-user {
+    width: fit-content;
+    display: inline-block;
 }
