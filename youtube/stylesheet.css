@@ -56,3 +56,28 @@
     margin-right: 10px !important;
     font-size: 20px;
 }
+
+.container-img {
+    border-radius: 50% !important;
+    width: 25px;
+    height: 25px;
+    margin-right: 35px;
+}
+
+.container-video-img {
+    width: 400px;
+    height: 250px;
+}
+
+.container-channel-img {
+    border-radius: 50% !important;
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+
+.three-dots {
+    border-radius: 50% !important;
+    width: fit-content;
+    display: inline-block;
+}
