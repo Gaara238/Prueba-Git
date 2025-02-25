@@ -65,8 +65,10 @@
 }
 
 .container-video-img {
-    width: 400px;
+    width: 450px;
     height: 250px;
+    border-radius: 5% !important;
+    cursor: pointer;
 }
 
 .container-channel-img {
