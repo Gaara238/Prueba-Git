@@ -129,11 +129,8 @@ function showVideos() {
     div_col.appendChild(div_container_name_channel);
     let div_container_data_video = document.createElement("div");
     let data_video_one = document.createElement("label");
-    data_video_one.textContent = videos[i].viewsOfVideo;  
-    let data_video_two = document.createElement("label");
-    data_video_two.textContent = videos[i].timeCreateThatVideo;
+    data_video_one.textContent = videos[i].viewsOfVideo + " -  " + videos[i].timeCreateThatVideo;  
     div_container_data_video.appendChild(data_video_one);
-    div_container_data_video.appendChild(data_video_two);
     div_col.appendChild(div_container_data_video);
     zone_videos.appendChild(div_col);
   }
