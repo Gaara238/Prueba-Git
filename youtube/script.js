@@ -16,8 +16,17 @@ class Video {
   }
 }
 
+class ShortVideo {
+  constructor(linkImage, titleVideo, viewsOfVideo,) {
+    this.linkImage = linkImage;
+    this.titleVideo = titleVideo;
+    this.viewsOfVideo = viewsOfVideo;
+  }
+}
+
 let subscriptions = [];
 let videos = [];
+let shortVideos = [];
 
 function createFiveInstance() {
   let i1 = new Subscription(
@@ -75,6 +84,33 @@ function createThreeVideos() {
   videos.push(i1);
   videos.push(i2);
   videos.push(i3);
+}
+
+function createForShortVideos() {
+  let i1 = new ShortVideo(
+    "https://i.pinimg.com/736x/c8/32/48/c832486126fdd2566a3a63b6483b4b07.jpg",
+    "5 DATOS QUE NO SABIAS DE LA MASACRE DEL CLAN UCHIHA",
+    "2.20 mil vistas"
+  );
+  let i2 = new ShortVideo(
+    "https://i.pinimg.com/736x/c8/32/48/c832486126fdd2566a3a63b6483b4b07.jpg",
+    "5 DATOS QUE NO SABIAS DE LA MASACRE DEL CLAN UCHIHA",
+    "2.20 mil vistas"
+  );
+  let i3 = new ShortVideo(
+    "https://i.pinimg.com/736x/c8/32/48/c832486126fdd2566a3a63b6483b4b07.jpg",
+    "5 DATOS QUE NO SABIAS DE LA MASACRE DEL CLAN UCHIHA",
+    "2.20 mil vistas"
+  );
+  let i4 = new ShortVideo(
+    "https://i.pinimg.com/736x/c8/32/48/c832486126fdd2566a3a63b6483b4b07.jpg",
+    "5 DATOS QUE NO SABIAS DE LA MASACRE DEL CLAN UCHIHA",
+    "2.20 mil vistas"
+  );
+  shortVideos.push(i1);
+  shortVideos.push(i2);
+  shortVideos.push(i3);
+  shortVideos.push(i4);
 }
 
 function showSubscriptions() {
@@ -136,7 +172,34 @@ function showVideos() {
   }
 }
 
+function showShortsVideos() {
+  let zone_short_videos = document.getElementById("container-shorts-videos");
+  for (let i = 0; i < shortVideos.length; i++) {
+    let div_col = document.createElement("div");
+    div_col.classList.add("col-3");
+    let div_container_img_short_video = document.createElement("div");
+    let img_short_video = document.createElement("img");
+    img_short_video.src = shortVideos[i].linkImage;
+    img_short_video.classList.add("container-short-video-img");
+    div_container_img_short_video.appendChild(img_short_video);
+    div_col.appendChild(div_container_img_short_video);
+    let div_container_short_title = document.createElement("div");
+    let title_short_video = document.createElement("b");
+    title_short_video.textContent = shortVideos[i].titleVideo;
+    div_container_short_title.appendChild(title_short_video);
+    div_col.appendChild(div_container_short_title);
+    let div_container_views_short_video = document.createElement("div");
+    let views_short_video =  document.createElement("b");
+    views_short_video.textContent = shortVideos[i].viewsOfVideo;
+    div_container_short_title.appendChild(views_short_video);
+    div_col.appendChild(div_container_views_short_video);
+    zone_short_videos.appendChild(div_col);
+  }
+}
+
 createFiveInstance();
 createThreeVideos();
+createForShortVideos();
 showSubscriptions();
 showVideos();
+showShortsVideos();
