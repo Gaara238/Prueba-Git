@@ -66,20 +66,20 @@ function createThreeVideos() {
     "3 days ago"
   );
   let i2 = new Video(
-    "https://people.com/thmb/9GtytrvyUHpN21-rZsIgIiT_EbM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(744x301:746x303)/elon-musk-tesla-cybertruck-041924-2-f76292da92b0415aa5251ad8f3f86f19.jpg",
-    "https://yt3.googleusercontent.com/G3gLy3HBgiZ21mEt1uzR0VPA6VXpsgJReuD7Z91nHwcgyFVu_QpHNpxuULN1D0YEQBwD0F1HwQ=s160-c-k-c0x00ffffff-no-rj",
-    "La fasinante historia de que como se le ocurrio a Elon Musk crear Tesla",
-    "Fox News Channel",
-    "503K views",
-    "3 days ago"
+    "https://i.ytimg.com/vi/u0ayN6VBLLo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAGzq_CmYE_8byD68k5TPRgu5OFxQ",
+    "https://yt3.googleusercontent.com/ytc/AIdro_nyP4aKYYzW1zw7Ksn2rspUBGXR9hNF3BsvW7ePDP3Z9vs=s160-c-k-c0x00ffffff-no-rj",
+    "La pelea entre los cinco Kage y Madara Uchiha",
+    "Mr Escorion",
+    "428K views",
+    "9 months ago"
   );
   let i3 = new Video(
-    "https://people.com/thmb/9GtytrvyUHpN21-rZsIgIiT_EbM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(744x301:746x303)/elon-musk-tesla-cybertruck-041924-2-f76292da92b0415aa5251ad8f3f86f19.jpg",
-    "https://yt3.googleusercontent.com/G3gLy3HBgiZ21mEt1uzR0VPA6VXpsgJReuD7Z91nHwcgyFVu_QpHNpxuULN1D0YEQBwD0F1HwQ=s160-c-k-c0x00ffffff-no-rj",
+    "https://www.clarin.com/img/2022/11/24/6dEKo3jLZ_1200x0__1.jpg",
+    "https://yt3.ggpht.com/axMs6D8UQuBDnB77v34QFMHH_85JgNiynLxifRoNX0lqh6Dxku7x9xpmzGBhhnny4vsrcCy2Gw=s176-c-k-c0x00ffffff-no-rj-mo",
     "La fasinante historia de que como se le ocurrio a Elon Musk crear Tesla",
-    "Fox News Channel",
-    "503K views",
-    "3 days ago"
+    "ESPN Fans",
+    "840K views",
+    "3 years ago"
   );
   videos.push(i1);
   videos.push(i2);
@@ -88,9 +88,9 @@ function createThreeVideos() {
 
 function createForShortVideos() {
   let i1 = new ShortVideo(
-    "https://i.pinimg.com/736x/c8/32/48/c832486126fdd2566a3a63b6483b4b07.jpg",
-    "5 DATOS QUE NO SABIAS DE LA MASACRE DEL CLAN UCHIHA",
-    "2.20 mil vistas"
+    "https://i.pinimg.com/736x/6f/c6/a6/6fc6a617be4a3a4a546aab2fe0a15367.jpg",
+    "EL PODER MAS REGALADO DE TODA LA SAGA DE NARUTO",
+    "3.17 mil vistas"
   );
   let i2 = new ShortVideo(
     "https://i.pinimg.com/736x/c8/32/48/c832486126fdd2566a3a63b6483b4b07.jpg",
@@ -189,9 +189,9 @@ function showShortsVideos() {
     div_container_short_title.appendChild(title_short_video);
     div_col.appendChild(div_container_short_title);
     let div_container_views_short_video = document.createElement("div");
-    let views_short_video =  document.createElement("b");
+    let views_short_video =  document.createElement("label");
     views_short_video.textContent = shortVideos[i].viewsOfVideo;
-    div_container_short_title.appendChild(views_short_video);
+    div_container_views_short_video.appendChild(views_short_video);
     div_col.appendChild(div_container_views_short_video);
     zone_short_videos.appendChild(div_col);
   }
