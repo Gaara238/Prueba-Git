@@ -15,38 +15,32 @@ class Pair {
 }
 
 function createPair() {
-  let img = chooseImg();
-  let position1 = choosePosition();
-  let position2 = choosePosition();
-  while (position2 === position1) {
-    position2 = choosePosition();
+  for (let i = 0; i <= 7; i++) {
+    let img = null;
+    while (img === null) {
+      img = chooseImg();
+      for (let j = 0; j < pairs.length; i++) {
+        if (img === pairs[j].img) {
+          img = null;
+          break;
+        }
+      }
+    }
+    let position1 = choosePosition();
+    let position2 = choosePosition();
+    while (position2 === position1) {
+      position2 = choosePosition();
+    }
+    let pair1 = new Pair(img, position1);
+    let pair2 = new Pair(img, position2);
+    pairs.push(pair1);
+    pairs.push(pair2);
   }
-  // for (let i = 0; i < pairs.length; i++) {
-  //   if (pairs[i].img === img) {
-  //     while (pairs[i].img === img) {
-  //       img = chooseImg;
-  //     }
-  //   }
-  //   if (pairs[i].position === position1) {
-  //     while (pairs[i].position === position1) {
-  //       position1 = choosePosition;
-  //     }
-  //   }
-  //   if (pairs[i].position === position2) {
-  //     while (pairs[i].position === position2) {
-  //       position2 = choosePosition;
-  //     }
-  //   }
-  // }
-  let pair1 = new Pair(img, position1);
-  let pair2 = new Pair(img, position2);
-  pairs.push(pair1);
-  pairs.push(pair2);
   console.log(pairs);
 }
 
 function chooseImg() {
-  let randomNumber = Math.floor(Math.random() * 7);
+  let randomNumber = Math.floor(Math.random() * 8);
   if (randomNumber === 0) {
     return "img/Naruto.webp";
   }
