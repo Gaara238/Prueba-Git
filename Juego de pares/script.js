@@ -19,17 +19,41 @@ function createPair() {
     let img = null;
     while (img === null) {
       img = chooseImg();
-      for (let j = 0; j < pairs.length; i++) {
+      for (let j = 0; j < pairs.length; j++) {
         if (img === pairs[j].img) {
           img = null;
           break;
         }
       }
     }
-    let position1 = choosePosition();
-    let position2 = choosePosition();
-    while (position2 === position1) {
+
+    let position1 = {
+      x: null,
+      y: null
+    };
+    while (position1.x === null && position1.y === null) {
+      position1 = choosePosition();
+      for (let j = 0; j < pairs.length; j++) {
+        if (position1.x === pairs[j].x && position1.y === pairs[j].y) {
+          position1.x = null;
+          position1.y = null;
+          break;
+        }
+      }
+    }
+    let position2 = {
+      x: null,
+      y: null
+    };
+    while (position2.x === null && position2.y === null) {
       position2 = choosePosition();
+      for (let j = 0; j < pairs.length; j++) {
+        if (position2.x === pairs[j].x && position2.y === pairs[j].y) {
+          position2.x = null;
+          position2.y = null;
+          break;
+        }
+      }
     }
     let pair1 = new Pair(img, position1);
     let pair2 = new Pair(img, position2);
