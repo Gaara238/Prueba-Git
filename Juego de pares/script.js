@@ -26,7 +26,6 @@ function createPair() {
         }
       }
     }
-
     let position1 = {
       x: null,
       y: null
@@ -34,7 +33,7 @@ function createPair() {
     while (position1.x === null && position1.y === null) {
       position1 = choosePosition();
       for (let j = 0; j < pairs.length; j++) {
-        if (position1.x === pairs[j].x && position1.y === pairs[j].y) {
+        if (position1.x === pairs[j].position.x && position1.y === pairs[j].position.y) {
           position1.x = null;
           position1.y = null;
           break;
@@ -48,7 +47,7 @@ function createPair() {
     while (position2.x === null && position2.y === null) {
       position2 = choosePosition();
       for (let j = 0; j < pairs.length; j++) {
-        if (position2.x === pairs[j].x && position2.y === pairs[j].y) {
+        if (position2.x === pairs[j].position.x && position2.y === pairs[j].position.y) {
           position2.x = null;
           position2.y = null;
           break;
