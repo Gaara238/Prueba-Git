@@ -65,7 +65,7 @@ function createPair() {
     let pair2 = new Pair(img, position2);
     pairs.push(pair2);
   }
-  console.log(pairs);
+  createCarts();
 }
 
 function chooseImg() {
@@ -92,7 +92,7 @@ function chooseImg() {
     return "img/Sasuke.jpg";
   }
   if (randomNumber === 7) {
-    return "img/Minato.jpg";
+    return "img/Tobirama.jpg";
   }
 }
 
@@ -105,4 +105,19 @@ function choosePosition() {
   };
 }
 
-createPair();
+function createCarts() {
+  let container = document.getElementById("cards-container");
+  console.log(container);
+  for (let i = 0; i < pairs.length; i++) {
+    let card = document.createElement("img");
+    card.src = pairs[i].img;
+    card.id = "card";
+    console.log(card);
+    container.appendChild(card);
+    board[pairs[i].position.x][pairs[i].position.y] = card;
+  }
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+  createPair();
+});
