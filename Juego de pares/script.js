@@ -28,35 +28,41 @@ function createPair() {
     }
     let position1 = {
       x: null,
-      y: null
+      y: null,
     };
     while (position1.x === null && position1.y === null) {
       position1 = choosePosition();
       for (let j = 0; j < pairs.length; j++) {
-        if (position1.x === pairs[j].position.x && position1.y === pairs[j].position.y) {
+        if (
+          position1.x === pairs[j].position.x &&
+          position1.y === pairs[j].position.y
+        ) {
           position1.x = null;
           position1.y = null;
           break;
         }
       }
     }
+    let pair1 = new Pair(img, position1);
+    pairs.push(pair1);
     let position2 = {
       x: null,
-      y: null
+      y: null,
     };
     while (position2.x === null && position2.y === null) {
       position2 = choosePosition();
       for (let j = 0; j < pairs.length; j++) {
-        if (position2.x === pairs[j].position.x && position2.y === pairs[j].position.y) {
+        if (
+          position2.x === pairs[j].position.x &&
+          position2.y === pairs[j].position.y
+        ) {
           position2.x = null;
           position2.y = null;
           break;
         }
       }
     }
-    let pair1 = new Pair(img, position1);
     let pair2 = new Pair(img, position2);
-    pairs.push(pair1);
     pairs.push(pair2);
   }
   console.log(pairs);
@@ -91,8 +97,8 @@ function chooseImg() {
 }
 
 function choosePosition() {
-  let x = Math.floor(Math.random() * 3);
-  let y = Math.floor(Math.random() * 3);
+  let x = Math.floor(Math.random() * 4);
+  let y = Math.floor(Math.random() * 4);
   return {
     x: x,
     y: y,
