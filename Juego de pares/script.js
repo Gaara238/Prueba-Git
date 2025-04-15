@@ -106,15 +106,18 @@ function choosePosition() {
 }
 
 function createCarts() {
-  let container = document.getElementById("cards-container");
-  console.log(container);
+
   for (let i = 0; i < pairs.length; i++) {
-    let card = document.createElement("img");
-    card.src = pairs[i].img;
-    card.id = "card";
-    console.log(card);
-    container.appendChild(card);
-    board[pairs[i].position.x][pairs[i].position.y] = card;
+    board[pairs[i].position.x][pairs[i].position.y] = pairs[i];
+  }
+  let container = document.getElementById("cards-container");
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      let card = document.createElement("img");
+      card.src = board[i][j].img;
+      card.id = "card";
+      container.appendChild(card);
+    }
   }
 }
 
