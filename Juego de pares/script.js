@@ -7,6 +7,11 @@ let board = [
 
 let pairs = [];
 
+let count = 0;
+let countTemp = 0;
+let img1 = null;
+let img2 = null;
+
 class Pair {
   constructor(img, position) {
     this.img = img;
@@ -106,7 +111,6 @@ function choosePosition() {
 }
 
 function createCarts() {
-
   for (let i = 0; i < pairs.length; i++) {
     board[pairs[i].position.x][pairs[i].position.y] = pairs[i];
   }
@@ -116,7 +120,30 @@ function createCarts() {
       let card = document.createElement("img");
       card.src = board[i][j].img;
       card.id = "card";
+      card.dataset.img = board[i][j].img;
+      card.dataset.x = board[i][j].position.x;
+      card.dataset.y = board[i][j].position.y;
+      card.addEventListener("click", handleCartClick);
       container.appendChild(card);
+    }
+  }
+}
+
+function handleCartClick(e) {
+  console.log(e.target.dataset);
+  countTemp++;
+  if (countTemp === 1) {
+    img1 = e.target.dataset.img;
+  }
+  if (countTemp === 2) {
+    count++;
+    document.getElementById("movement-counter").textContent = count;
+    countTemp = 0;
+    img2 = e.target.dataset.img;
+    if (img1 === img2) {
+      console.log("Son iguales");
+      img1 = null;
+      img2 = null;
     }
   }
 }
