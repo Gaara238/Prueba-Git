@@ -6,7 +6,28 @@
     row-gap: 16px;
 }
 
-#card {
+.father {
+    background-color: rgb(81, 178, 235);
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.father.flipped {
+    transform: rotateY(180deg);
+}
+
+.father .card-front,
+.father .card-back {
     width: 150px;
     height: 150px;
+    position: absolute;
+    backface-visibility: hidden;
 }
+
+.father .card-back {
+    transform: rotateY(180deg);
+}
+
+

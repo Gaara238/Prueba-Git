@@ -117,20 +117,28 @@ function createCarts() {
   let container = document.getElementById("cards-container");
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
+      let father = document.createElement("div");
+      father.dataset.img = board[i][j].img;
+      father.dataset.x = board[i][j].position.x;
+      father.dataset.y = board[i][j].position.y;
+      father.addEventListener("click", handleCartClick);
+      father.classList.add("father");
+      let front = document.createElement("div");
+      front.classList.add("card-front");
+      father.appendChild(front);
+
       let card = document.createElement("img");
+      card.classList.add("card-back");
       card.src = board[i][j].img;
-      card.id = "card";
-      card.dataset.img = board[i][j].img;
-      card.dataset.x = board[i][j].position.x;
-      card.dataset.y = board[i][j].position.y;
-      card.addEventListener("click", handleCartClick);
-      container.appendChild(card);
+      father.appendChild(card);
+      container.appendChild(father);
     }
   }
 }
 
 function handleCartClick(e) {
-  console.log(e.target.dataset);
+  let father = e.target.closest(".father");
+  father.classList.add("flipped");
   countTemp++;
   if (countTemp === 1) {
     img1 = e.target.dataset.img;
