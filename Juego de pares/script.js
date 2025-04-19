@@ -138,20 +138,28 @@ function createCarts() {
 
 function handleCartClick(e) {
   let father = e.target.closest(".father");
+  console.log(father);
+  console.log(father.dataset);
   father.classList.add("flipped");
   countTemp++;
   if (countTemp === 1) {
-    img1 = e.target.dataset.img;
+    img1 = father;
   }
   if (countTemp === 2) {
     count++;
     document.getElementById("movement-counter").textContent = count;
     countTemp = 0;
-    img2 = e.target.dataset.img;
-    if (img1 === img2) {
-      console.log("Son iguales");
+    img2 = father;
+    if (img1.dataset.img === img2.dataset.img) {
+
       img1 = null;
       img2 = null;
+    } else {
+      setTimeout(function() {
+      img1.classList.remove("flipped");
+      img2.classList.remove("flipped");
+      }, 1000);
+
     }
   }
 }
