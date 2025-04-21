@@ -137,9 +137,10 @@ function createCarts() {
 }
 
 function handleCartClick(e) {
+  if (countTemp === 2) {
+    return;
+  }
   let father = e.target.closest(".father");
-  console.log(father);
-  console.log(father.dataset);
   father.classList.add("flipped");
   countTemp++;
   if (countTemp === 1) {
@@ -148,18 +149,17 @@ function handleCartClick(e) {
   if (countTemp === 2) {
     count++;
     document.getElementById("movement-counter").textContent = count;
-    countTemp = 0;
     img2 = father;
     if (img1.dataset.img === img2.dataset.img) {
-
+      countTemp = 0;
       img1 = null;
       img2 = null;
     } else {
       setTimeout(function() {
       img1.classList.remove("flipped");
       img2.classList.remove("flipped");
+      countTemp = 0;
       }, 1000);
-
     }
   }
 }
