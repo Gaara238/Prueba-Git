@@ -11,6 +11,9 @@ let count = 0;
 let countTemp = 0;
 let img1 = null;
 let img2 = null;
+let timeTotal = null;
+let intervalTime = null;
+let finishGame = 0;
 
 class Pair {
   constructor(img, position) {
@@ -152,24 +155,40 @@ function handleCartClick(e) {
     img2 = father;
     if (img1.dataset.img === img2.dataset.img) {
       countTemp = 0;
+      finishGame++;
+      if (finishGame === 8) {
+        finishTheGame();
+      }
       img1 = null;
       img2 = null;
     } else {
-      setTimeout(function() {
-      img1.classList.remove("flipped");
-      img2.classList.remove("flipped");
-      countTemp = 0;
+      setTimeout(function () {
+        img1.classList.remove("flipped");
+        img2.classList.remove("flipped");
+        countTemp = 0;
       }, 1000);
     }
   }
 }
 
+function finishTheGame() {
+  clearInterval(intervalTime);
+  let message = document.getElementById("finalMessage");
+  message.textContent =
+    "Feliciaciones has sido capaz de completar el juego en " +
+    count +
+    "movimientos y " +
+    timeTotal +
+    " segundos";
+}
+
 function counterTime() {
   let time = document.getElementById("time");
   let countTime = 0;
-  setInterval(function() {
+  intervalTime = setInterval(function () {
     countTime++;
-    time.textContent = countTime; 
+    timeTotal = countTime;
+    time.textContent = countTime;
   }, 1000);
 }
 

@@ -1,9 +1,15 @@
+body {
+    display: flex;
+    flex-direction: row;
+}
+
 #cards-container {
     display: grid;
     grid-template-columns: repeat(4, 150px);
     grid-template-rows: repeat(4, 150px);
     column-gap: 16px;
     row-gap: 16px;
+    margin-right: 20px;
 }
 
 .father {
