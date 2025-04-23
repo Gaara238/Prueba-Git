@@ -164,6 +164,16 @@ function handleCartClick(e) {
   }
 }
 
+function counterTime() {
+  let time = document.getElementById("time");
+  let countTime = 0;
+  setInterval(function() {
+    countTime++;
+    time.textContent = countTime; 
+  }, 1000);
+}
+
 window.addEventListener("DOMContentLoaded", function () {
   createPair();
+  counterTime();
 });
