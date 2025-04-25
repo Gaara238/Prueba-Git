@@ -11,6 +11,7 @@ let count = 0;
 let countTemp = 0;
 let img1 = null;
 let img2 = null;
+let countTime = null;
 let timeTotal = null;
 let intervalTime = null;
 let finishGame = 0;
@@ -173,23 +174,40 @@ function handleCartClick(e) {
 
 function finishTheGame() {
   clearInterval(intervalTime);
+  let container = document.getElementById("container");
   let message = document.getElementById("finalMessage");
   message.textContent =
     "Feliciaciones has sido capaz de completar el juego en " +
     count +
-    "movimientos y " +
+    " movimientos y " +
     timeTotal +
-    " segundos";
+    " segundos.";
 }
 
 function counterTime() {
   let time = document.getElementById("time");
-  let countTime = 0;
+  countTime = 0;
   intervalTime = setInterval(function () {
     countTime++;
     timeTotal = countTime;
     time.textContent = countTime;
   }, 1000);
+}
+
+function restartGame() {
+  board = [
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+    [null, null, null, null],
+  ];
+  pairs = [];
+  document.getElementById("cards-container").innerHTML = "";
+  createPair();
+  count = 0;
+  document.getElementById("movement-counter").textContent = count;
+  countTemp = 0;
+  countTime = 0;
 }
 
 window.addEventListener("DOMContentLoaded", function () {
