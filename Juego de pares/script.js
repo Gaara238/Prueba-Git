@@ -144,9 +144,12 @@ function handleCartClick(e) {
   if (countTemp === 2) {
     return;
   }
-  let father = e.target.closest(".father");
-  father.classList.add("flipped");
   countTemp++;
+  let father = e.target.closest(".father");
+  if (father.classList.contains("flipped")) {
+    countTemp = 1;
+  }
+  father.classList.add("flipped");
   if (countTemp === 1) {
     img1 = father;
   }
