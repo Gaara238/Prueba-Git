@@ -177,7 +177,6 @@ function handleCartClick(e) {
 
 function finishTheGame() {
   clearInterval(intervalTime);
-  let container = document.getElementById("container");
   let message = document.getElementById("finalMessage");
   message.textContent =
     "Feliciaciones has sido capaz de completar el juego en " +
@@ -211,6 +210,10 @@ function restartGame() {
   document.getElementById("movement-counter").textContent = count;
   countTemp = 0;
   countTime = 0;
+  document.getElementById("time").textContent = countTime;
+  counterTime();
+  document.getElementById("finalMessage").textContent = "";
+  finishGame = 0;
 }
 
 window.addEventListener("DOMContentLoaded", function () {
