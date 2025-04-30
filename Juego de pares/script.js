@@ -9,8 +9,8 @@ let pairs = [];
 
 let count = 0;
 let countTemp = 0;
-let img1 = null;
-let img2 = null;
+let card1 = null;
+let card2 = null;
 let countTime = null;
 let timeTotal = null;
 let intervalTime = null;
@@ -151,24 +151,26 @@ function handleCartClick(e) {
   }
   father.classList.add("flipped");
   if (countTemp === 1) {
-    img1 = father;
+    card1 = father;
   }
   if (countTemp === 2) {
     count++;
     document.getElementById("movement-counter").textContent = count;
-    img2 = father;
-    if (img1.dataset.img === img2.dataset.img) {
+    card2 = father;
+    if (card1.dataset.img === card2.dataset.img) {
+      card1.classList.add("addBorder");
+      card2.classList.add("addBorder");
       countTemp = 0;
       finishGame++;
       if (finishGame === 8) {
         finishTheGame();
       }
-      img1 = null;
-      img2 = null;
+      card1 = null;
+      card2 = null;
     } else {
       setTimeout(function () {
-        img1.classList.remove("flipped");
-        img2.classList.remove("flipped");
+        card1.classList.remove("flipped");
+        card2.classList.remove("flipped");
         countTemp = 0;
       }, 1000);
     }
