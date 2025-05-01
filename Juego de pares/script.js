@@ -154,9 +154,9 @@ function handleCartClick(e) {
     card1 = father;
   }
   if (countTemp === 2) {
+    card2 = father;
     count++;
     document.getElementById("movement-counter").textContent = count;
-    card2 = father;
     if (card1.dataset.img === card2.dataset.img) {
       card1.classList.add("addBorder");
       card2.classList.add("addBorder");
