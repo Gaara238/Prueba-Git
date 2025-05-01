@@ -144,11 +144,11 @@ function handleCartClick(e) {
   if (countTemp === 2) {
     return;
   }
-  countTemp++;
   let father = e.target.closest(".father");
   if (father.classList.contains("flipped")) {
-    countTemp = 1;
+    return;
   }
+  countTemp++;
   father.classList.add("flipped");
   if (countTemp === 1) {
     card1 = father;
@@ -172,6 +172,8 @@ function handleCartClick(e) {
         card1.classList.remove("flipped");
         card2.classList.remove("flipped");
         countTemp = 0;
+        card1 = null;
+        card2 = null;
       }, 1000);
     }
   }
