@@ -1,4 +1,4 @@
-let numbers = [
+let board = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
@@ -16,13 +16,16 @@ let matrix2 = [
   [null, null, null],
 ];
 
+let array1 = [];
+let array2 = [];
+
 function fillMatrix() {
-  for (let i = 0; i < numbers.length; i++) {
-    for (let j = 0; j < numbers[i].length; j++) {
-      numbers[i][j] = randomNumber();
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      board[i][j] = randomNumber();
     }
   }
-  console.log(numbers);
+  console.log(board);
   orderAsc();
   orderDes();
 }
@@ -33,62 +36,50 @@ function randomNumber() {
 }
 
 function orderAsc() {
-  for (let i = 0; i < matrix1.length; i++) {
-    for (let j = 0; j < matrix1[i].length; j++) {
-      matrix1[i][j] = numbers[i][j];
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      array1.push(board[i][j]);
     }
   }
-  let exit = false;
-  let counterTemp = 0;
-  while (exit === false) {
-    let count = 0;
-    let countTemp = 0;
-    for (let i = 0; i < matrix1.length; i++) {
-      for (let j = 0; j < matrix1[i].length; j++) {
-        count++;
-        if (countTemp === 2) {
-          console.log(matrix1);
-          return;
-        }
-        if (count === 3) {
-          if (matrix1[i][j] > matrix1[i + 1][j - 2]) {
-            counterTemp++;
-            countTemp++;
-            let varTemp = matrix1[i][j];
-            matrix1[i][j] = matrix1[i + 1][j - 2];
-            matrix1[i + 1][j - 2] = varTemp;
-            count = 0;
-          }
-        }
-        if (matrix1[i][j] > matrix1[i][j + 1]) {
-          counterTemp++;
-          let varTemp = matrix1[i][j];
-          matrix1[i][j] = matrix1[i][j + 1];
-          matrix1[i][j + 1] = varTemp;
-        }
-        if (counterTemp === 0) {
-          exit = true;
-        }
+  for (let i = 0; i < array1.length; i++) {
+    for (let j = 0; j < array1.length; j++) {
+      if (array1[j] > array1[j + 1]) {
+        let varTemp = array1[j];
+        array1[j] = array1[j + 1];
+        array1[j + 1] = varTemp;
       }
     }
   }
-
+  let count = 0;
+  for (let i = 0; i < matrix1.length; i++) {
+    for (let j = 0; j < matrix1[i].length; j++) {
+      matrix1[i][j] = array1[count];
+      count++;
+    }
+  }
   console.log(matrix1);
 }
 
 function orderDes() {
-  for (let i = 0; i < matrix2.length; i++) {
-    for (let j = 0; j < matrix2[i].length; j++) {
-      matrix2[i][j] = numbers[i][j];
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      array2.push(board[i][j]);
     }
   }
+  for (let i = 0; i < array2.length; i++) {
+    for (let j = 0; j < array2.length; j++) {
+      if (array2[j] < array2[j + 1]) {
+        let varTemp = array2[j];
+        array2[j] = array2[j + 1];
+        array2[j + 1] = varTemp;
+      }
+    }
+  }
+  let count = 0;
   for (let i = 0; i < matrix2.length; i++) {
     for (let j = 0; j < matrix2[i].length; j++) {
-      if (matrix2[i][j] < matrix2[i][j + 1]) {
-        let varTemp = matrix2[i][j];
-        matrix2[i][j] = matrix2[i][j + 1];
-        matrix2[i][j + 1] = varTemp;
-      }
+      matrix2[i][j] = array2[count];
+      count++;
     }
   }
   console.log(matrix2);
