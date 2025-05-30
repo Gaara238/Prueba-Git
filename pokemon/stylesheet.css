@@ -1,0 +1,61 @@
+#container {
+    width: 240px;
+    height: 360px;
+    border: 5px;
+    border-style: solid;
+    padding: 10px;
+}
+
+#image-of-pokemon {
+    width: 210px;
+    height: 150px;
+    display: grid;
+    justify-self: center;
+}
+
+#container-of-name-and-health {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+#name-of-pokemon {
+    border: 1px;
+    border-style: solid;
+    padding: 3px;
+    margin-right: 17.2px;
+}
+
+#health-of-pokemon {
+    border: 1px;
+    border-style: solid;
+    padding: 3px;
+    margin-left: 17.2px;
+}
+
+#tp {
+    border: 1px;
+    border-style: solid;
+    padding: 3px;
+    text-align: center; 
+}
+
+#container-of-habilitys {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+#hability-one {
+    border: 1px;
+    border-style: solid;
+    padding: 3px;
+    margin-right: 17.2px;
+}
+
+
+
+#hability-two {
+    border: 1px;
+    border-style: solid;
+    padding: 3px;
+    margin-left: 17.2px;
+}

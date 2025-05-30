@@ -1,0 +1,109 @@
+body {
+    color: rgb(19, 1, 1);
+
+    }
+    
+    #item-one + li {
+      color: red;
+    }
+    
+    li ~ li {
+      color: rgb(153, 153, 14);
+    }
+    
+    ul > li {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: 20px;
+    }
+
+    article > h1 {
+        color: rgb(67, 133, 231);
+    }
+
+    #article-two h1 {
+        color: rgb(255, 94, 0);
+    }
+
+    #explain {
+        background-color: rgb(189, 32, 32);
+        width: 50%;
+    }
+
+    #test-box {
+      width: 100px;
+      height: 100px;
+      padding: 10px;
+      border: 10px;
+      border-style: inset;
+      border-color: black;
+      box-sizing: border-box;
+      background-color: rgb(247, 4, 4);
+    }
+
+    #test-box:hover {
+      background-color: rgb(250, 246, 3);
+      border-style: outset;
+      border-radius: 10%;
+      border-right: 20px;
+      overflow: scroll;
+    }
+
+    #test-box:active {
+      background-color: rgb(3, 250, 3);
+      border-style: inset;
+      border-radius: 0%;
+    }
+
+    .parent-flex {
+      width: 350px;
+      border: 2px solid black;
+      box-sizing: border-box;
+      display: flex;
+      flex-flow: row nowrap;
+    }
+
+    .child-flex {
+      width: 100px;
+      height: 50px;
+      background-color: rgb(0, 140, 255);
+      border: 1px solid;
+      box-sizing: border-box;
+      flex: 5;
+    }
+
+    .child-flex:first-child {
+      background-color: yellow;
+      flex: 10;
+    }
+
+    .child-flex:last-child {
+      background-color: red;
+      flex: 10;
+    }
+
+    body {
+      background-color: #2ceae8;
+    }
+
+    #example-mq {
+      display: grid;
+
+      grid-template-columns: repeat(
+        auto-fill,
+        minmax(200px, 1fr)
+      );
+      gap: 16px;
+      max-width: 700px;
+    }
+
+    .img-edgar-orochi {
+      width: 100%;
+      height: auto ;
+    }
+
+    #example-mq img:first-child {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }

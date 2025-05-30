@@ -1,5 +1,19 @@
 #header-conteiner {
+    display: grid;
+    grid-template-columns: 20% 65% 15%;
+    grid-template-rows: 50px;
+}
+
+#section-one {
     display: flex;
-    flex-flow: row wrap;
-    
+    flex-grow: 1;
+}
+
+#section-one:first-child {
+    align-self: center;
+}
+
+#img-icon-youtube {
+    width: 80px;
+    height: 50px;
 }
