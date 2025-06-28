@@ -29,6 +29,7 @@ function isAAnagrama(str1, str2) {
     for (let j = 0; j < str2.length; j++) {
       if (str1[i] === str2[j]) {
         count1++;
+        break;
       }
     }
   }
@@ -41,6 +42,7 @@ function isAAnagrama(str1, str2) {
     for (let j = 0; j < str1.length; j++) {
       if (str2[i] === str1[j]) {
         count2++;
+        break;
       }
     }
   }
