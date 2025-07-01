@@ -1,5 +1,6 @@
+let matrix = [];
+
 function groupAnagramas(words) {
-  let matrix = [];
   for (let i = 0; i < words.length; i++) {
     let wordsTemp = [];
     let wordOne = words[i];
@@ -17,7 +18,10 @@ function groupAnagramas(words) {
         }
       }
     }
-    matrix.push(wordsTemp);
+    let exist = existInTheMatrix(wordsTemp);
+    if (!exist) {
+      matrix.push(wordsTemp);
+    }
   }
   console.log(matrix);
 }
@@ -65,6 +69,19 @@ function existInTheArray(word, array) {
     }
   }
   return varAux;
+}
+
+function existInTheMatrix(array) {
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      for (let l = 0; l < array.length; l++) {
+        if (matrix[i][j] === array[l]) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
 }
 
 groupAnagramas(["eat", "tea", "tan", "ate", "nat", "bat"]);
