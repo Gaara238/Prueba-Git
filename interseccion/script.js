@@ -18,4 +18,7 @@ function interseccion(arr1, arr2) {
     console.log(equalData);
 }
 
-interseccion([1, 2, 3], [3, 4, 5, 3]);
+interseccion([1, 2, 3, 4], [3, 4, 5, 6]);
+interseccion(["a", "b", "c"], ["c", "d", "a"]);
+interseccion([1, 2, 2, 3], [2, 2, 4]);
+interseccion([], [1, 2 , 3]);
