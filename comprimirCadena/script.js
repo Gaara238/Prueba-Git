@@ -16,4 +16,26 @@ function comprimirCadena(str) {
   console.log(compressedString);
 }
 
+function descomprimirCadena(str) {
+  let number = null;;
+  let leter = "";
+  let count = 0;
+  let descompressedString = "";
+  for (let i = 0; i < str.length; i++) {
+    count++;
+    if (count === 1) {
+      leter = str[i];
+    }
+    if (count === 2) {
+      number = parseInt(str[i]);
+      for (let j = 0; j < number; j++) {
+        descompressedString += leter;
+      }
+      count = 0;
+    }
+  }
+  console.log(descompressedString);
+}
+
 comprimirCadena("aaabbcdddd");
+descomprimirCadena("a3b2c1d4");
