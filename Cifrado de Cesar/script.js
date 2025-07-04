@@ -14,7 +14,7 @@ function cifradoCesar(str, desplazamiento) {
             finalStr += str[i];
         }
     }
-    console.log(finalStr)
+    console.log(finalStr);
 }
 
 cifradoCesar("Zb.R", 3);
